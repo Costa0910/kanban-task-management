@@ -31,6 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: "Board",
           key: "id",
+          onDelete: "CASCADE",
+          onUpdate: "CASCADE",
         },
       },
     },

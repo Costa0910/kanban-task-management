@@ -29,6 +29,8 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: "Task",
           key: "id",
+          onDelete: "CASCADE",
+          onUpdate: "CASCADE",
         },
       },
     },

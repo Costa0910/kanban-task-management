@@ -25,6 +25,8 @@ module.exports = {
         references: {
           model: "Board",
           key: "id",
+          onDelete: "CASCADE",
+          onUpdate: "CASCADE",
         },
       },
       createdAt: {
