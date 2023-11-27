@@ -46,6 +46,14 @@ module.exports = (sequelize, DataTypes) => {
         return await user.scope("currentUser").findByPk(user.id);
       }
     }
+
+    toSaveObject() {
+      return {
+        id: this.id,
+        username: this.username,
+        email: this.email,
+      };
+    }
     static associate(models) {
       // define association here
       User.hasMany(models.Board, {
