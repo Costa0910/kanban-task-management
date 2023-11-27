@@ -9,6 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Board.hasMany(models.Task, {
+        foreignKey: "boardId",
+        as: "Tasks",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+      Board.belongsTo(models.User, {
+        foreignKey: "userId",
+        as: "Users",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   Board.init(
@@ -33,11 +45,11 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: "User",
+          model: "Users",
           key: "id",
-          onDelete: "CASCADE",
-          onUpdate: "CASCADE",
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
     },
     {

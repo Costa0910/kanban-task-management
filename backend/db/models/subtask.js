@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      SubTask.belongsTo(models.Task, {
+        foreignKey: "taskId",
+        as: "Tasks",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   SubTask.init(
@@ -27,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       taskId: {
         type: DataTypes.INTEGER,
         references: {
-          model: "Task",
+          model: "Tasks",
           key: "id",
-          onDelete: "CASCADE",
-          onUpdate: "CASCADE",
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
     },
     {

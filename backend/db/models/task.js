@@ -9,6 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Task.belongsTo(models.Board, {
+        foreignKey: "boardId",
+        as: "Boards",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+
+      Task.hasMany(models.SubTask, {
+        foreignKey: "taskId",
+        as: "SubTasks",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   Task.init(
@@ -29,11 +42,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
-          model: "Board",
+          model: "Boards",
           key: "id",
-          onDelete: "CASCADE",
-          onUpdate: "CASCADE",
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
     },
     {
