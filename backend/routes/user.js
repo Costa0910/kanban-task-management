@@ -51,4 +51,11 @@ router.post("/signup", validateSignup, async (req, res) => {
   return res.status(401).json(err);
 });
 
+/* DELETE /api/user/logout */
+router.delete("/logout", (_req, res) => {
+  // Perform logout logic here
+  res.clearCookie("token");
+  res.status(200).json({ message: "success" });
+});
+
 module.exports = router;
