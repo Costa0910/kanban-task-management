@@ -3,6 +3,8 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const morgan = require("morgan");
+const helmet = require("helmet");
 const { ValidationError } = require("sequelize");
 
 const app = express();
@@ -12,9 +14,19 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(morgan("dev"));
 
 const isProduction = process.env.NODE_ENV === "production";
 
+if (!isProduction) {
+  app.use(helmet());
+}
+
+app.use(
+  helmet.crossOriginResourcePolicy({
+    policy: "cross-origin",
+  })
+);
 const logger = (req, _res, next) => {
   console.log(
     `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
