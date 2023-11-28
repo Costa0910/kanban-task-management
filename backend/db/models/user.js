@@ -9,7 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
 
-    static async createUser({ username, email, password }) {
+    toSafeObject() {
+      return {
+        id: this.id,
+        username: this.username,
+        email: this.email,
+      };
+    }
+
+    static async signUp({ username, email, password }) {
       // Create a new user if it does not exist
       const user = await User.findOne({
         where: {
@@ -29,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         password: hashedPassword,
       });
 
-      return newUser.scope("currentUser").findByPk(newUser.id);
+      return User.scope("currentUser").findByPk(newUser.id);
     }
 
     static async login({ credential, password }) {
@@ -43,17 +51,10 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       if (user && (await bcrypt.compare(password, user.password))) {
-        return await user.scope("currentUser").findByPk(user.id);
+        return await User.scope("currentUser").findByPk(user.id);
       }
     }
 
-    toSaveObject() {
-      return {
-        id: this.id,
-        username: this.username,
-        email: this.email,
-      };
-    }
     static associate(models) {
       // define association here
       User.hasMany(models.Board, {
