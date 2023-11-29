@@ -1,4 +1,7 @@
-const { Task } = require("../../db/models");
+const { Task, SubTask } = require("../../db/models");
+const { addSubTask, updateSubTask } = require("../subTasks/index");
+
+const { Op } = require("sequelize");
 
 const getTasks = async (id) => {
   try {
@@ -7,6 +10,13 @@ const getTasks = async (id) => {
         boardId: id,
       },
       attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: [
+        {
+          model: SubTask,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+          as: "SubTasks",
+        },
+      ],
     });
 
     if (tasks.length === 0) return null;
@@ -16,34 +26,58 @@ const getTasks = async (id) => {
   }
 };
 
-const addTask = async (task) => {
+const addTask = async (task, SubTasks) => {
   try {
     const newTask = await Task.create(task);
-    return newTask;
-  } catch (error) {
-    console.log(error);
-  }
-};
+    let addedSubTasks = null;
+    if (SubTasks.length) {
+      addedSubTasks = await addSubTask(newTask.id, SubTasks);
+    }
 
-const updateTask = async (id, task) => {
-  try {
-    const updatedTask = await Task.update(task, {
-      where: {
-        id,
-      },
-    });
-    // returned type object
-    if (Array.from(updatedTask).includes(0)) return null;
     return {
-      id,
-      ...task,
+      ...newTask.dataValues,
+      SubTasks: addedSubTasks || [],
     };
   } catch (error) {
     console.log(error);
   }
 };
 
-const deleteTask = async (id) => {
+const updateTask = async (id, task, SubTasks) => {
+  try {
+    const updatedTask = await Task.update(task, {
+      where: {
+        id,
+      },
+    });
+    let updatedSubTasks = null;
+    if (SubTasks.length) {
+      updatedSubTasks = await updateSubTask(id, SubTasks);
+    }
+    // returned type object
+    if (Array.from(updatedTask).includes(0)) return null;
+    return {
+      id,
+      ...task,
+      SubTasks: updatedSubTasks || [],
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteTask = async (id, SubTasks) => {
+  // Handle delete Task and SubTasks
+  if (SubTasks.length) {
+    console.log("Deleting SubTasks", SubTasks);
+    return await SubTask.destroy({
+      where: {
+        id: {
+          [Op.in]: SubTasks,
+        },
+      },
+    });
+  }
   try {
     const deletedTask = await Task.destroy({
       where: {

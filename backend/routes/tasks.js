@@ -18,8 +18,13 @@ const {
  */
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, description, status } = req.body;
-  const updatedTask = await updateTask(id, { title, description, status });
+  console.log(req.body);
+  const { title, description, status, SubTasks } = req.body;
+  const updatedTask = await updateTask(
+    id,
+    { title, description, status },
+    SubTasks || [] // if no subtasks, pass empty array
+  );
 
   if (updatedTask) {
     return res.status(200).json({
@@ -46,11 +51,11 @@ router.put("/:id", async (req, res) => {
  */
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  const deletedTask = await deleteTask(id);
+  const { SubTasks } = req.body;
+  const deletedTask = await deleteTask(id, SubTasks || []);
 
   if (deletedTask) {
     return res.status(200).json({
-      task: { id: deletedTask },
       message: "success",
     });
   }
@@ -71,12 +76,15 @@ router.delete("/:id", async (req, res) => {
  * }
  */
 router.post("/", async (req, res) => {
-  const { title, description, status, boardId } = req.body;
-  const task = await addTask({ title, description, status, boardId });
+  const { title, description, status, boardId, SubTasks } = req.body;
+  const task = await addTask(
+    { title, description, status, boardId },
+    SubTasks || [] // if no subtasks, pass empty array
+  );
 
   if (task) {
     return res.status(200).json({
-      task: task,
+      task: { ...task },
       message: "success",
     });
   }
