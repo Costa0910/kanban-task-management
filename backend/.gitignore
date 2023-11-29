@@ -37,7 +37,7 @@ package-lock.json
 *.sqlite
 *.sqlite3
 *.db
-
+database.db
 # OS generated files #
 ######################
 .DS_Store
