@@ -3,7 +3,6 @@ import { useMediaQuery } from "react-responsive";
 
 export function useColorScheme() {
   const [isDark, setIsDark] = usePersistedState("colorScheme", null);
-  console.log("useColorScheme:", isDark);
 
   useEffect(() => {
     if (isDark) {
