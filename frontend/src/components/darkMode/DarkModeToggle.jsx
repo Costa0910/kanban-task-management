@@ -4,7 +4,7 @@ const DarkModeToggle = () => {
   return (
     <div className="dark-mode-toggle">
       <span>
-        <img src="../../../../public/icon-light-theme.svg" alt="light" />
+        <img src="./icon-light-theme.svg" alt="light" />
       </span>
       <label>
         <input
@@ -17,7 +17,7 @@ const DarkModeToggle = () => {
         <span className="check"></span>
       </label>
       <span>
-        <img src="../../../../public/icon-dark-theme.svg" alt="dark" />
+        <img src="./icon-dark-theme.svg" alt="dark" />
       </span>
     </div>
   );
