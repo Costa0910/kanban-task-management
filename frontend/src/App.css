@@ -1,0 +1,31 @@
+.App {
+  width: 100%;
+  border: 1px solid red;
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  display: none;
+  padding: var(--padding);
+}
+
+.nav-bar-content {
+  width: 100%;
+}
+
+@media screen and (min-width: 576px) {
+  .sidebar {
+    display: block;
+    width: 25%;
+    border-right: 1px solid red;
+    min-height: 100vh;
+  }
+}
+
+@media screen and (min-width: 976px) {
+  .sidebar {
+    width: 20%;
+  }
+}

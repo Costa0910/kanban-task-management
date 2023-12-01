@@ -1,12 +1,19 @@
 import "./App.css";
-import DarkModeToggle from "./components/darkMode/DarkModeToggle";
+import NavBar from "./components/navBar/NavBar";
+import SideBar from "./components/sidebar/SideBar";
+import Content from "./components/content/Content";
 
 function App() {
   return (
-    <>
-      <h1>hello</h1>
-      <DarkModeToggle />
-    </>
+    <div className="App">
+      <div className="sidebar">
+        <SideBar />
+      </div>
+      <div className="nav-bar-content">
+        <NavBar />
+        <Content />
+      </div>
+    </div>
   );
 }
 
