@@ -9,7 +9,7 @@ function App() {
       <div className="sidebar">
         <SideBar />
       </div>
-      <div className="nav-bar-content">
+      <div className="navbar-content">
         <NavBar />
         <Content />
       </div>

@@ -41,3 +41,9 @@ nav__board-name p {
   align-items: center;
   justify-content: center;
 }
+
+@media screen and (min-width: 576px) {
+  .nav__brand img, .nav__brand span {
+    display: none;
+  }
+}
