@@ -1,4 +1,4 @@
-const NavBoards = () => {
+const Boards = () => {
   return (
     <div className="nav-boards">
       <h3>Boards</h3>
@@ -12,4 +12,4 @@ const NavBoards = () => {
   );
 };
 
-export default NavBoards;
+export default Boards;
