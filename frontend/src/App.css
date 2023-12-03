@@ -16,14 +16,16 @@
   padding-left: 0;
   color: var(--items-color);
   box-shadow: var(--box-shadow);
+  z-index: 10;
+  border-right: var(--separator-border);
 }
 
 .navbar-content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  background: var(--color-bg);
+  /* gap: 0.3rem; */
+  /* background: var(--color-background); */
 }
 
 @media screen and (min-width: 576px) {

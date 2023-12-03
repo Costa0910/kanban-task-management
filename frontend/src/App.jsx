@@ -4,12 +4,12 @@ import SideBar from "./components/sidebar/SideBar";
 import Content from "./components/content/Content";
 
 //modal
-import Modal from "./components/modal/Modal";
+// import Modal from "./components/modal/Modal";
 
-import { useState } from "react";
+// import { useState } from "react";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="App">
@@ -18,7 +18,7 @@ function App() {
       </div>
       <div className="navbar-content">
         <NavBar />
-        <button
+        {/* <button
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -30,7 +30,7 @@ function App() {
         </button>
         <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
           This is Modal Content!
-        </Modal>
+        </Modal> */}
         <Content />
       </div>
     </div>

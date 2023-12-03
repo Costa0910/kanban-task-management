@@ -3,9 +3,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4rem;
+  height: 5rem;
+  /* background: var(--color-bg); */
   box-shadow: var(--box-shadow);
   padding: var(--padding);
+  border-bottom: var(--separator-border);
+  /* border: 1px solid red; */
 }
 
 .nav__brand {

@@ -7,6 +7,7 @@
   margin: 1.5rem 0;
   color: var(--items-color);
   font-size: 1.2rem;
+  width: 100%;
 }
 
 .menu__count {
