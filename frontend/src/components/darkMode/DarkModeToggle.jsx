@@ -1,9 +1,11 @@
+// import "./darkMode.css";
+
 import { useColorScheme } from "../../hooks/colorSchema";
 const DarkModeToggle = () => {
   const { isDark, setIsDark } = useColorScheme();
   return (
     <div className="dark-mode-toggle">
-      <span>
+      <span className="light">
         <img src="./icon-light-theme.svg" alt="light" />
       </span>
       <label>
@@ -16,7 +18,7 @@ const DarkModeToggle = () => {
         />
         <span className="check"></span>
       </label>
-      <span>
+      <span className="dark">
         <img src="./icon-dark-theme.svg" alt="dark" />
       </span>
     </div>

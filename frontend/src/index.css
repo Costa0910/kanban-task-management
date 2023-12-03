@@ -47,9 +47,30 @@ body.dark {
   --box-shadow: 0px 10px 15px -3px rgba(255, 255, 255, 0.1);
 }
 .dark-mode-toggle {
-  display: relative;
-  width: 100px;
-  /* border: 1px solid red; */
+  margin-top: auto;
+  margin-left: var(--padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid; */
+  background: var(--color-bg);
+  box-shadow: var(--box-shadow);
+  gap: 1rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+}
+.dark-mode-toggle .light,
+.dark-mode-toggle .dark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+.dark-mode-toggle label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dark-mode-toggle input[type="checkbox"] {
@@ -60,7 +81,7 @@ body.dark {
   position: relative;
   display: block;
   width: 50px;
-  height: 20px;
+  height: 25px;
   background-color: var(--main-purple);
   cursor: pointer;
   border-radius: 20px;
@@ -71,16 +92,17 @@ body.dark {
   content: "";
   position: absolute;
   background-color: #ffffff;
-  width: 16px;
-  height: 16px;
-  top: 2px;
-  left: 2px;
+  width: 18px;
+  height: 18px;
+  top: 0.2rem;
+  left: 4px;
   border-radius: 50%;
   transition: ease-in 0.5s;
 }
 
 .dark-mode-toggle input[type="checkbox"]:checked ~ .check::after {
-  transform: translateX(30px);
+  transform: translateX(28px);
+  left: -0px;
 }
 
 /* a {

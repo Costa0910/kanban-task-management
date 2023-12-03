@@ -10,9 +10,9 @@ function Modal({ children, isOpen, handleClose }) {
   return (
     <ReactPortal wrapperId="modal-root">
       <div className="modal" onClick={handleClose}>
-        <button onClick={handleClose} className="close-btn">
+        {/* <button onClick={handleClose} className="close-btn">
           Close
-        </button>
+        </button> */}
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           {children}
         </div>
