@@ -30,7 +30,7 @@ body {
   --danger-red: #ea5555;
   --danger-red-hover: #ff9898;
   --items-color: #828fa3;
-  --padding: 1rem;
+  --padding: 1.5rem;
 
   background-color: var(--color-background);
   color: var(--color-foreground);
@@ -45,7 +45,7 @@ body.dark {
   --color-background: #2b2c37;
   --color-foreground: #ffffff;
   --color-bg: #20212c;
-  --color-bg-add-column: #20212c;
+  --color-bg-add-column: #2b2c37;
 }
 .dark-mode-toggle {
   margin-top: auto;

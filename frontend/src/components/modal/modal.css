@@ -20,6 +20,7 @@
 }
 
 .modal-content {
+  margin: 0 auto;
   margin-top: 1rem;
   min-width: 90%;
   width: 80%;

@@ -4,7 +4,7 @@ const Task = () => {
   return (
     <div className="task">
       <div className="task__title">Task Title</div>
-      <p>0 of 3 subtasks</p>
+      <p className="subTasks">0 of 3 subtasks</p>
     </div>
   );
 };
@@ -12,7 +12,10 @@ const Task = () => {
 const Column = () => {
   return (
     <div className="column">
-      <div className="column__title">Column</div>
+      <div className="column__title">
+        <span className="column__title-icon"></span>
+        Todo<span>(4)</span>
+      </div>
       <div className="column__content">
         <Task />
         <Task />
@@ -30,21 +33,10 @@ const Content = () => {
       <Column />
       <Column />
       <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
+      <div className="add-column" role="button">
+        <img src="./icon-add-column.svg" alt="add column" />
+        <button>New column</button>
+      </div>
     </div>
   );
 };
