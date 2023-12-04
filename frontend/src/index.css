@@ -108,6 +108,25 @@ body.dark {
   left: -0px;
 }
 
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-purple);
+  width: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--main-purple-hover);
+}
 /* a {
   font-weight: 500;
   color: #646cff;
