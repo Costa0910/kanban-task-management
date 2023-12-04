@@ -2,7 +2,7 @@ import "./navbar.css";
 import { useState } from "react";
 import Modal from "../modal/Modal";
 import Menu from "../menu/Menu";
-import Button from "../form/button/Button";
+import Button from "../formElements/button/Button";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
