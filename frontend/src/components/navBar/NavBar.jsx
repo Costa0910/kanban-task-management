@@ -2,6 +2,7 @@ import "./navbar.css";
 import { useState } from "react";
 import Modal from "../modal/Modal";
 import Menu from "../menu/Menu";
+import Button from "../form/button/Button";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,9 +35,9 @@ const NavBar = () => {
         </div>
       </div>
       <div className="nav__settings">
-        <button>
-          <img src="./icon-add-task-mobile.svg" alt="add task" />
-        </button>
+        <Button handleClick={() => setIsOpen(true)}>
+          {/* <img src="./icon-add-task-mobile.svg" alt="add task" /> */}+
+        </Button>
         <div className="nav__settings-ellipse">
           <img src="./icon-vertical-ellipsis.svg" alt=" vertical ellipsis" />
         </div>

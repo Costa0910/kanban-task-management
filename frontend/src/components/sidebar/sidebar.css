@@ -2,6 +2,10 @@
   height: 100%;
   width: 100%;
   color: var(--items-color);
+
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar__logo {
@@ -9,14 +13,14 @@
 }
 
 .sidebar__menu .menu {
-  /* border: 1px solid yellow; */
-  height: 620px;
-  /* height: 70%; */
+  /* height: calc(800px - 200px); */
+  height: 550px;
   /* max-height: 80%; */
   /* overflow: auto; */
 }
 
 .sidebar__hide {
+  margin-top: auto;
   padding: var(--padding);
   display: flex;
   align-items: center;

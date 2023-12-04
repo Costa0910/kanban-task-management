@@ -1,0 +1,28 @@
+.button {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 3rem;
+  border: 1px solid transparent;
+  padding: var(--padding);
+  cursor: pointer;
+  transition: all 0.25s;
+  border-radius: 1.5rem;
+  background: var(--main-purple, #635fc7);
+
+  color: var(--White, #fff);
+  font-family: Plus Jakarta Sans;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button:hover {
+  background: var(--main-purple-hover, #a8a4ff);
+}
+.button:focus,
+.button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

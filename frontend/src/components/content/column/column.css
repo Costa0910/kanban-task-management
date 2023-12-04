@@ -2,6 +2,8 @@
   /* border: 1px solid red; */
   width: 17.5rem;
   min-width: 17.5rem;
+  height: fit-content;
+  height: --moz-fit-content;
 }
 
 .column__title {
