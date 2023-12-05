@@ -23,6 +23,7 @@
   margin: 0 auto;
   margin-top: 1rem;
   min-width: 90%;
+  max-width: 30rem;
   width: 80%;
   height: auto;
   background-color: var(--color-background);
@@ -39,4 +40,16 @@
 .menu-modal .modal-content {
   max-width: 200px;
   padding: 0 1rem 0 0;
+}
+
+@media screen and (min-width: 576px) {
+  .modal-content {
+    min-width: 70%;
+  }
+}
+
+@media screen and (min-width: 976px) {
+  .modal-content {
+    min-width: 50%;
+  }
 }

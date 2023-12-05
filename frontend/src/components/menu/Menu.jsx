@@ -1,5 +1,7 @@
 import DarkModeToggle from "../darkMode/DarkModeToggle";
+import Modal from "../modal/Modal";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 import "./menu.css";
 
@@ -33,7 +35,16 @@ const items = [
   },
 ];
 
-const Menu = () => {
+const Menu = ({ handleClose }) => {
+  const [state, setState] = useState(false);
+  const handleClick = () => {
+    setState((prev) => !prev);
+
+    if (state) {
+      handleClose();
+    }
+  };
+  console.log("out:", state);
   return (
     <div className="menu">
       <div className="menu__count">
@@ -47,19 +58,31 @@ const Menu = () => {
           <span>
             <img src="./icon-new-board.svg" alt="board icon" className="add" />
           </span>
-          <div role="button" className="menu__item-add-text">
+          <button className="menu__item-add-text" onClick={handleClick}>
             <img
               src="./icon-add-board.svg"
               alt="add new board"
               className="add"
             />
             Create new Board
-          </div>
+          </button>
+          {state && (
+            <Modal handleClose={() => setState(false)} isOpen={state}>
+              <p>Create new Board</p>
+              <p>Create new Board</p>
+              <p>Create new Board</p>
+              <p>Create new Board</p>
+            </Modal>
+          )}
         </div>
       </div>
       <DarkModeToggle />
     </div>
   );
+};
+
+Menu.propTypes = {
+  handleClose: PropTypes.func,
 };
 
 export default Menu;
