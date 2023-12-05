@@ -1,5 +1,6 @@
 import DarkModeToggle from "../darkMode/DarkModeToggle";
 import Modal from "../modal/Modal";
+import AddNewBoard from "../board/addNewBoard/AddNewBoard";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
@@ -68,10 +69,7 @@ const Menu = ({ handleClose }) => {
           </button>
           {state && (
             <Modal handleClose={() => setState(false)} isOpen={state}>
-              <p>Create new Board</p>
-              <p>Create new Board</p>
-              <p>Create new Board</p>
-              <p>Create new Board</p>
+              <AddNewBoard />
             </Modal>
           )}
         </div>

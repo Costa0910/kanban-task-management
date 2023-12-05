@@ -1,0 +1,46 @@
+.add-new-board {
+  width: 100%;
+  color: var(--color-foreground);
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--padding);
+}
+
+.board-columns {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.new-board-name input {
+  color: var(--color-foreground);
+}
+
+.add-new-board h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.add-new-board label {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.add-new-board button {
+  width: 100%;
+}
+
+.add-column-button {
+  background-color: var(--main-purple-hover);
+}
+
+.add-column-button.add-column-button:hover {
+  background-color: rgb(149, 145, 214);
+}
