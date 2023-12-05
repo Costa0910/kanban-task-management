@@ -15,6 +15,8 @@
   -moz-osx-font-smoothing: grayscale;
 
   color-scheme: light dark;
+  /* scrollbar-color: var(--main-purple);
+  scrollbar-width: thin; */
 }
 
 body {
@@ -108,25 +110,49 @@ body.dark {
   left: -0px;
 }
 
-::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
-}
+/* Firefox */
+/* * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-purple) var(--color-background);
+} */
 
-::-webkit-scrollbar-track {
+/* Chrome, Edge, and Safari */
+/* ::-webkit-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-purple) var(--color-background);
+  width: 0.8rem;
+} */
+
+/* ::-webkit-scrollbar-track {
   background: var(--color-background);
-}
+} */
 
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   background: var(--main-purple);
-  width: 0.5rem;
   border-radius: 0.5rem;
-}
+} */
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+/* ::-webkit-scrollbar-thumb:hover {
   background: var(--main-purple-hover);
-}
+} */
+/*
+* {
+  scrollbar-color: inherit;
+  scrollbar-color: initial;
+  scrollbar-color: revert;
+  scrollbar-color: revert-layer;
+  scrollbar-color: unset;
+  width: 300px;
+  height: 100px;
+} */
+
+/* .scroller {
+  width: 300px;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: #007 #bada55;
+} */
 /* a {
   font-weight: 500;
   color: #646cff;

@@ -1,5 +1,5 @@
 import Menu from "../menu/Menu";
-import Checkbox from "../formElements/checkbox/Checkbox";
+import Input from "../formElements/input/Input";
 import "./sidebar.css";
 
 const SideBar = () => {
@@ -11,9 +11,16 @@ const SideBar = () => {
       <div className="sidebar__menu">
         <Menu />
       </div>
-      <Checkbox handleClick={() => console.log("clicked")}>
-        Testing this stuff
-      </Checkbox>
+      <Input
+        type="text"
+        name="search"
+        placeholder="Search"
+        customClass="sidebar__search"
+        onChange={() => {}}
+        value=""
+      >
+        Name
+      </Input>
       <div className="sidebar__hide">
         <img src="./icon-hide-sidebar.svg" alt="hide sidebar" />
         <span>Hide Sidebar</span>
