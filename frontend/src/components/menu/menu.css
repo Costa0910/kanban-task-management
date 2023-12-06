@@ -44,9 +44,14 @@
   justify-content: center;
 }
 
+.menu__item.active {
+  background: var(--main-purple, #635fc7);
+  color: #fff;
+}
+
 .menu__item-add,
 .menu__item-add-text {
-  color: var(--Main-Purple, #635fc7);
+  color: var(--main-purple, #635fc7);
 }
 .menu__item-add-text {
   display: flex;
@@ -58,7 +63,7 @@
   align-items: center;
 }
 
-.menu__item:hover {
-  background: var(--Main-Purple, #635fc7);
-  color: #ffffff;
+.menu__item:not(.active):hover {
+  background-color: var(--color-bg-add-column);
+  color: var(--main-purple, #635fc7);
 }

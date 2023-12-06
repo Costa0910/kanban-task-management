@@ -1,14 +1,22 @@
 import "./task.css";
+import PropTypes from "prop-types";
 
-const Task = () => {
+const Task = ({ task }) => {
+  const completed = task.subtasks.filter(
+    (subtask) => subtask.isCompleted
+  ).length;
   return (
     <div className="task">
-      <div className="task__title">
-        Lorem ipsum dolor sit amet
-      </div>
-      <p className="subTasks">0 of 3 subtasks</p>
+      <div className="task__title">{task.title}</div>
+      <p className="subTasks">
+        {completed} of {task.subtasks.length} subtasks
+      </p>
     </div>
   );
+};
+
+Task.propTypes = {
+  task: PropTypes.object,
 };
 
 export default Task;

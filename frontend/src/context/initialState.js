@@ -1,9 +1,10 @@
 import { nanoid } from "nanoid";
 
+const initialBoardId = nanoid();
 export default {
   activeBoard: {
-    name: "Platform Lanche",
-    id: nanoid(),
+    name: "Platform Launch",
+    id: initialBoardId,
     columns: ["Todo", "Doing", "Done"],
     tasks: [
       {
@@ -54,5 +55,16 @@ export default {
       },
     ],
   },
-  boards: [],
+  boards: [
+    {
+      name: "Platform Launch",
+      id: initialBoardId,
+      columns: ["Todo", "Doing", "Done"],
+    },
+    {
+      name: "Marketing Plan",
+      id: nanoid(),
+      columns: ["Todo", "Doing", "Done"],
+    },
+  ],
 };

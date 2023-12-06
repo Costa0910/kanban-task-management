@@ -5,10 +5,11 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 import "./menu.css";
+import { useAppContext } from "../../context/AppContext";
 
-const Item = ({ name }) => {
+const Item = ({ name, customClass }) => {
   return (
-    <div className="menu__item">
+    <div className={`menu__item ${customClass}`}>
       <span>
         <img src="./icon-board.svg" alt="board icon" />
       </span>
@@ -19,25 +20,12 @@ const Item = ({ name }) => {
 
 Item.propTypes = {
   name: PropTypes.string.isRequired,
+  customClass: PropTypes.string,
 };
-
-const items = [
-  {
-    name: "Platform Launch",
-    id: 1,
-  },
-  {
-    name: "Marketing Plan",
-    id: 2,
-  },
-  {
-    name: "Roadmap",
-    id: 3,
-  },
-];
 
 const Menu = ({ handleClose }) => {
   const [state, setState] = useState(false);
+  const { boards, activeBoard } = useAppContext();
   const handleClick = () => {
     setState((prev) => !prev);
 
@@ -45,15 +33,18 @@ const Menu = ({ handleClose }) => {
       handleClose();
     }
   };
-  console.log("out:", state);
   return (
     <div className="menu">
       <div className="menu__count">
-        <p>All Boards ({items.length})</p>
+        <p>All Boards ({boards.length})</p>
       </div>
       <div className="menu__item-container">
-        {items.map((item) => (
-          <Item key={item.id} name={item.name} />
+        {boards.map((item) => (
+          <Item
+            key={item.id}
+            name={item.name}
+            customClass={item.id === activeBoard.id ? "active" : ""}
+          />
         ))}
         <div className="menu__item-add">
           <span>

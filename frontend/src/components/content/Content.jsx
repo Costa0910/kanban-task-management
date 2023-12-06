@@ -1,17 +1,27 @@
 import "./content.css";
 import Column from "./column/Column";
-import Select from "../formElements/select/Select";
+
+import { useAppContext } from "../../context/AppContext";
 const Content = () => {
+  const { activeBoard } = useAppContext();
   return (
     <div className="content">
-      <Column />
-      <Column />
-      <Column />
-      <Select />
-      <div className="add-column" role="button">
-        <img src="./icon-add-column.svg" alt="add column" />
-        <button>New column</button>
-      </div>
+      {activeBoard.columns < 1 ? (
+        <div className="add-column" role="button">
+          <img src="./icon-add-column.svg" alt="add column" />
+          <button>New column</button>
+        </div>
+      ) : (
+        <>
+          {activeBoard.columns.map((column) => (
+            <Column key={column.id} column={column} />
+          ))}
+          <div className="add-column" role="button">
+            <img src="./icon-add-column.svg" alt="add column" />
+            <button>New column</button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

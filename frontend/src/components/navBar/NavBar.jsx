@@ -5,6 +5,8 @@ import AddNewTask from "../content/column/addNewTask/AddNewTask";
 import Menu from "../menu/Menu";
 import Button from "../formElements/button/Button";
 
+import { useAppContext } from "../../context/AppContext";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "settings":
@@ -37,13 +39,15 @@ const NavBar = () => {
     menu: false,
   });
 
+  const { activeBoard } = useAppContext();
+
   return (
     <div className="nav">
       <div className="nav__brand">
         <img src="./logo.svg" alt="kanban logo" />
 
         <div role="button" className="nav__board-name">
-          <p>Platform Launch</p>
+          <p>{activeBoard.name}</p>
           <span
             className="nav__board-name__chevron"
             role="button"
