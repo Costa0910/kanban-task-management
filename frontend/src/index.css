@@ -47,7 +47,7 @@ body.dark {
   --color-background: #2b2c37;
   --color-foreground: #ffffff;
   --color-bg: #20212c;
-  --color-bg-add-column: #2b2c37;
+  --color-bg-add-column: #ffffff;
 }
 .dark-mode-toggle {
   margin-top: auto;

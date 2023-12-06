@@ -1,9 +1,9 @@
 .button {
   width: -moz-fit-content;
   width: fit-content;
-  height: 3rem;
+  height: 2rem;
   border: 1px solid transparent;
-  padding: var(--padding);
+  padding: 1rem;
   cursor: pointer;
   transition: all 0.25s;
   border-radius: 1.5rem;
@@ -11,7 +11,7 @@
 
   color: var(--White, #fff);
   font-family: Plus Jakarta Sans;
-  font-size: 0.9375rem;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;

@@ -1,11 +1,11 @@
 .add-new-board {
   width: 100%;
-  color: var(--color-foreground);
+  color: var(--items-color);
   /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: var(--padding);
+  gap: 0.5rem;
 }
 
 .board-columns {
@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 0.2rem;
 }
 
 .new-board-name input {
@@ -21,13 +21,14 @@
 }
 
 .add-new-board h2 {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: normal;
+  color: var(--color-foreground);
 }
 
 .add-new-board label {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -38,9 +39,10 @@
 }
 
 .add-column-button {
-  background-color: var(--main-purple-hover);
+  background-color: var(--color-bg-add-column);
+  color: var(--main-purple);
 }
 
-.add-column-button.add-column-button:hover {
-  background-color: rgb(149, 145, 214);
-}
+/* .add-column-button.add-column-button:hover {
+  background-color: rgb(44, 40, 129);
+} */

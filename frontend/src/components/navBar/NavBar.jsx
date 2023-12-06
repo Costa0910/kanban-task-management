@@ -1,6 +1,7 @@
 import "./navbar.css";
 import { useReducer } from "react";
 import Modal from "../modal/Modal";
+import AddNewTask from "../content/column/addNewTask/AddNewTask";
 import Menu from "../menu/Menu";
 import Button from "../formElements/button/Button";
 
@@ -74,7 +75,8 @@ const NavBar = () => {
             handleClose={() => dispatch({ type: "addTask" })}
             isOpen={state.addTask}
           >
-            <Menu />
+            {/* <Menu /> */}
+            <AddNewTask />
           </Modal>
         )}
 

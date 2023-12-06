@@ -1,8 +1,17 @@
 .custom-select {
   min-width: 250px;
   width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
   position: relative;
   background: var(--color-background);
+}
+
+.custom-select label {
+  margin: 0;
+  padding: 0;
 }
 
 select {
@@ -12,16 +21,24 @@ select {
   appearance: none;
   width: 100%;
   font-size: 1.15rem;
-  padding: 0.675em 6em 0.675em 1em;
   background-color: var(--color-background);
   color: var(--color-foreground);
-  border: var(--separator-border);
+  border: 2px solid rgba(130, 143, 163, 0.25);
   border-radius: 0.25rem;
   cursor: pointer;
+  padding: 0.5rem;
 }
 
 .arrow {
   position: absolute;
-  top: 3.3rem;
+  top: 2.7rem;
   right: 1.1rem;
+}
+
+select:focus {
+  outline: none;
+}
+
+select:focus {
+  border-color: var(--main-purple);
 }

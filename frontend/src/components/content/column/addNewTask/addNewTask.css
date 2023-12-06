@@ -1,0 +1,71 @@
+.add-new-task {
+  width: 100%;
+  color: var(--items-color);
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.task-columns {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.new-task-name input {
+  color: var(--color-foreground);
+}
+
+.add-new-task h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: normal;
+  color: var(--color-foreground);
+}
+
+.add-new-task label {
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.add-new-task button {
+  width: 100%;
+}
+
+.add-subtasks-button {
+  background-color: var(--color-bg-add-column);
+  color: var(--main-purple);
+}
+
+.task-description {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+}
+
+.task-description textarea {
+  width: 100%;
+  resize: none;
+  border: 2px solid rgba(130, 143, 163, 0.25);
+  outline: none;
+  line-height: normal;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border-radius: 0.25rem;
+  height: 5rem;
+  padding: 0.5rem;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.task-description textarea:focus {
+  border-color: var(--main-purple);
+}

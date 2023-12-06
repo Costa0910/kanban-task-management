@@ -1,9 +1,11 @@
+import PropTypes from "prop-types";
+
 import "./select.css";
 
-const Select = () => {
+const Select = ({ description }) => {
   return (
     <div className="custom-select">
-      <label htmlFor="status">Current Status</label>
+      <label htmlFor="status">{description}</label>
       <select
         id="status"
         name="currentStatus"
@@ -19,6 +21,10 @@ const Select = () => {
       <img src="./icon-chevron-down.svg" alt="arrow down" className="arrow" />
     </div>
   );
+};
+
+Select.propTypes = {
+  description: PropTypes.string.isRequired,
 };
 
 export default Select;
