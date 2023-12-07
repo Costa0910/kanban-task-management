@@ -6,6 +6,7 @@ import Menu from "../menu/Menu";
 import Button from "../formElements/button/Button";
 
 import { useAppContext } from "../../context/AppContext";
+import { useGetSize } from "../../hooks/getSize";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -33,6 +34,8 @@ const reducer = (state, action) => {
 };
 
 const NavBar = () => {
+  const isMobile = useGetSize();
+
   const [state, dispatch] = useReducer(reducer, {
     settings: false,
     addTask: false,
@@ -73,7 +76,13 @@ const NavBar = () => {
       </div>
 
       <div className="nav__settings">
-        <Button handleClick={() => dispatch({ type: "addTask" })}>+</Button>
+        <Button handleClick={() => dispatch({ type: "addTask" })}>
+          {isMobile ? (
+            <img src="./icon-add.svg" alt="add task" />
+          ) : (
+            "+ Add New Task"
+          )}
+        </Button>
         {state.addTask && (
           <Modal
             handleClose={() => dispatch({ type: "addTask" })}
