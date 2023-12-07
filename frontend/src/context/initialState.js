@@ -60,11 +60,13 @@ export default {
       name: "Platform Launch",
       id: initialBoardId,
       columns: ["Todo", "Doing", "Done"],
+      tasks: [],
     },
     {
       name: "Marketing Plan",
       id: nanoid(),
       columns: ["Todo", "Doing", "Done"],
+      tasks: [],
     },
   ],
 };

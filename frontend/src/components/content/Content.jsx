@@ -16,10 +16,10 @@ const Content = () => {
           {activeBoard.columns.map((column) => (
             <Column key={column} column={column} />
           ))}
-          <div className="add-column" role="button">
+          {/* <div className="add-column" role="button">
             <img src="./icon-add-column.svg" alt="add column" />
             <button>New column</button>
-          </div>
+          </div> */}
         </>
       )}
     </div>

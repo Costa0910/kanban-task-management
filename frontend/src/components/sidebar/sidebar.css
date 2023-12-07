@@ -2,29 +2,47 @@
   height: 100%;
   width: 100%;
   color: var(--items-color);
-
-  /* border: 1px solid yellow; */
   display: flex;
   flex-direction: column;
 }
 
 .sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   padding-left: var(--padding);
 }
 
+.sidebar__logo span {
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.1rem;
+  color: var(--color-foreground);
+  font-size: 2rem;
+}
+
 .sidebar__menu .menu {
-  /* height: calc(800px - 200px); */
-  height: 550px;
-  /* max-height: 80%; */
-  /* overflow: auto; */
+  min-height: 500px;
+  height: 70vh;
 }
 
 .sidebar__hide {
   margin-top: auto;
-  padding: var(--padding);
+  /* padding: 0 var(--padding); */
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 0rem 6.25rem 6.25rem 0rem;
+  padding-left: var(--padding);
+}
+
+.sidebar__hide:hover {
+  background: var(--main-purple, #635fc7);
+  color: #fff;
 }
 
 .sidebar__hide span {

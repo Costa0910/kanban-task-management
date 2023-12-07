@@ -5,11 +5,25 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 import "./menu.css";
-import { useAppContext } from "../../context/AppContext";
+import { useAppContext, useAppDispatch } from "../../context/AppContext";
+import { getTasks } from "../../context/fetchData";
 
-const Item = ({ name, customClass }) => {
+const Item = ({ name, customClass, id }) => {
+  const dispatchBoard = useAppDispatch();
+
+  const handleClick = async (e) => {
+    e.stopPropagation();
+    dispatchBoard({ type: "UPDATE_ACTIVE_BOARD", payload: { id } });
+    const test = await getTasks();
+    console.log(test);
+    alert("test");
+  };
   return (
-    <div className={`menu__item ${customClass}`}>
+    <div
+      className={`menu__item ${customClass}`}
+      role="button"
+      onClick={handleClick}
+    >
       <span>
         <img src="./icon-board.svg" alt="board icon" />
       </span>
@@ -21,6 +35,7 @@ const Item = ({ name, customClass }) => {
 Item.propTypes = {
   name: PropTypes.string.isRequired,
   customClass: PropTypes.string,
+  id: PropTypes.string.isRequired,
 };
 
 const Menu = ({ handleClose }) => {
@@ -41,6 +56,7 @@ const Menu = ({ handleClose }) => {
       <div className="menu__item-container">
         {boards.map((item) => (
           <Item
+            id={item.id}
             key={item.id}
             name={item.name}
             customClass={item.id === activeBoard.id ? "active" : ""}
