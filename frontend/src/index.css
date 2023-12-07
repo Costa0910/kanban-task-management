@@ -49,6 +49,14 @@ body.dark {
   --color-bg: #20212c;
   --color-bg-add-column: #ffffff;
 }
+
+.danger {
+  color: var(--danger-red);
+}
+
+.danger:hover {
+  color: var(--danger-red-hover);
+}
 .dark-mode-toggle {
   margin-top: auto;
   margin-left: var(--padding);

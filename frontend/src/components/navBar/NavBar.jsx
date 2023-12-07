@@ -103,8 +103,10 @@ const NavBar = () => {
           <Modal
             handleClose={() => dispatch({ type: "settings" })}
             isOpen={state.settings}
+            classes={"settings-modal"}
           >
-            <Menu />
+            <button className="settings-edit">Edit Board</button>
+            <button className="danger">Delete Board</button>
           </Modal>
         )}
       </div>

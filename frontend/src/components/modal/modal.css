@@ -3,10 +3,9 @@
   inset: 0;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
   overflow: hidden;
   z-index: 999;
 }
@@ -54,4 +53,23 @@
     max-width: 500px;
     width: 400px;
   }
+}
+.modal.settings-modal {
+  justify-content: flex-end;
+  align-items: flex-start;
+  background-color: transparent;
+}
+
+.settings-modal .modal-content {
+  margin-left: 84vw;
+  margin-top: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  min-width: 200px;
+  width: 200px;
 }
