@@ -6,11 +6,12 @@
   background-color: var(--color-bg);
   padding: var(--padding);
 }
+
 .input__checkbox .checkbox {
   appearance: none;
   position: relative;
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   margin: 0;
   border-radius: 4px;
   background-color: #fff;
@@ -19,18 +20,19 @@
 }
 .input__checkbox .checkbox:checked {
   background: var(--main-purple);
+  border: 1px solid var(--main-purple);
 }
 .input__checkbox .checkbox:checked:after,
 .input__checkbox .checkbox:checked:before {
   content: "";
   position: absolute;
   display: none;
-  left: 7px;
-  top: 4px;
+  left: 6px;
+  top: 3px;
   display: block;
   position: absolute;
-  width: 6px;
-  height: 11px;
+  width: 5px;
+  height: 10px;
   border-right: 3px solid #fff;
   border-bottom: 3px solid #fff;
   transform: rotate(35deg);
