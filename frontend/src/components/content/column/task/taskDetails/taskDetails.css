@@ -1,5 +1,4 @@
 .task-details {
-  /* border: 1px solid red; */
   color: var(--items-color);
   font-size: 0.8rem;
   font-style: normal;
@@ -11,29 +10,39 @@
   gap: 0.7rem;
 }
 
-.task-details h2 {
+.task-details__title {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.task-details__title h2 {
+  width: 95%;
   font-size: 1.1rem;
   font-weight: 700;
   line-height: normal;
   color: var(--color-foreground);
 }
 
+.task-details__title span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .task-details__subtasks {
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
 
 .subtask {
-  /* border: 1px solid red; */
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   height: 30px;
   padding: 0.5rem;
-  height: -moz-fit-content;
   height: fit-content;
+  height: -moz-fit-content;
   border-radius: 0.25rem;
 }

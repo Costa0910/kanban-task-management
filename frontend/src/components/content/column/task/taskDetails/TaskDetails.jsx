@@ -4,7 +4,7 @@ import Select from "../../../../formElements/select/Select";
 import PropTypes from "prop-types";
 import "./taskDetails.css";
 
-const TaskDetails = ({ id }) => {
+const TaskDetails = ({ id, handleClick }) => {
   const { activeBoard } = useAppContext();
   const task = activeBoard.tasks.find((task) => task.id === id);
   const completed = task.subtasks.filter(
@@ -13,7 +13,12 @@ const TaskDetails = ({ id }) => {
 
   return (
     <div className="task-details">
-      <h2>{task.title}</h2>
+      <div className="task-details__title">
+        <h2>{task.title}</h2>
+        <span role="button" className="task__settings" onClick={handleClick}>
+          <img src="./icon-vertical-ellipsis.svg" alt="task settings" />
+        </span>
+      </div>
       <p>{task.description}</p>
       <div className="task-details__subtasks">
         <p>
@@ -39,6 +44,7 @@ const TaskDetails = ({ id }) => {
 
 TaskDetails.propTypes = {
   id: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default TaskDetails;

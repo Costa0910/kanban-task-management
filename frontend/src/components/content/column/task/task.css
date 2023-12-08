@@ -9,10 +9,11 @@
   flex-direction: column;
   justify-content: center;
   gap: 0.3rem;
+  transition: all 0.2s ease-in-out;
 }
 
 .task:hover {
-  background: var(--color-bg-add-column);
+  transform: scale(1.05);
 }
 
 .task__title {
@@ -27,7 +28,6 @@
   color: var(--items-color);
   font-size: 0.8rem;
   font-weight: 500;
-  /* letter-spacing: 0.03rem; */
 }
 
 /* add column */
@@ -36,7 +36,6 @@
   border-radius: var(--border-radius);
   background: var(--color-bg-add-column);
   color: var(--items-color);
-  /* border: 1px solid red; */
   min-width: 17.5rem;
   width: 17.5rem;
   display: flex;
@@ -53,4 +52,27 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+.task-settings-modal {
+  background-color: transparent;
+}
+
+.task-settings-modal button {
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  font-weight: 700;
+  line-height: normal;
+}
+.task-settings-modal .modal-content {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.task-settings-modal__edit {
+  color: var(--items-color);
 }

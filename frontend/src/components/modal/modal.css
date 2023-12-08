@@ -45,7 +45,6 @@
   .modal-content {
     min-width: 50%;
     max-width: 25rem;
-
   }
 }
 
@@ -72,4 +71,15 @@
   gap: 0.8rem;
   min-width: 200px;
   width: 200px;
+}
+
+.modal.task-settings-modal {
+  bottom: 8rem;
+  margin-left: 20rem;
+}
+
+.task-settings-modal .modal-content {
+  min-width: 200px;
+  width: 200px;
+  gap: 0.8rem;
 }
