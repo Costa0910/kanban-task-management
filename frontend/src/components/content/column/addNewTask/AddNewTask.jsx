@@ -1,36 +1,101 @@
+import { useReducer } from "react";
 // import Modal from "../../modal/Modal";
+import { nanoid } from "nanoid";
 import Input from "../../../formElements/input/Input";
-// import InputAndDelete from "../../../formElements/inputAndDelete/InputAndDelete";
+import InputAndDelete from "../../../formElements/inputAndDelete/InputAndDelete";
 import Button from "../../../formElements/button/Button";
 // import { nanoid } from "nanoid";
 import Select from "../../../formElements/select/Select";
 import "./addNewTask.css";
 
+const initialState = {
+  name: "",
+  description: "",
+  subTasks: [],
+};
+
+const reducer = (state, action) => {
+  let toUpdate;
+  const { title, id } = action.payload;
+
+  switch (action.type) {
+    case "name":
+      return {
+        ...state,
+        name: title,
+      };
+    case "description":
+      return {
+        ...state,
+        description: title,
+      };
+    case "update":
+      toUpdate = state.subTasks.findIndex((subTask) => subTask.id === id);
+      return {
+        ...state,
+        subTasks: [
+          ...state.subTasks.slice(0, toUpdate),
+          { ...state.subTasks[toUpdate], title },
+          ...state.subTasks.slice(toUpdate + 1),
+        ],
+      };
+    case "delete":
+      toUpdate = state.subTasks.filter((subTask) => subTask.id != id);
+      return {
+        ...state,
+        subTasks: toUpdate,
+      };
+
+    case "add":
+      return {
+        ...state,
+        subTasks: [
+          ...state.subTasks,
+          {
+            title: "",
+            isCompleted: false,
+            id: nanoid(),
+          },
+        ],
+      };
+    default:
+      return state;
+  }
+};
+
 const AddNewTask = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <form
       className="add-new-task"
       onSubmit={(e) => {
         e.preventDefault();
-        // console.log(state);
+        console.log("form submitted");
       }}
     >
       <h2>Add New Task</h2>
       <Input
         type="text"
+        value={state.name}
         placeholder="e.g. Take coffee break"
         customClass="new-task-name"
         onChange={(e) =>
-          // dispatch({ type: "name", payload: { title: e.target.value } })
-          console.log(e.target.value)
+          dispatch({ type: "name", payload: { title: e.target.value } })
         }
-        // value={state.name}
       >
         Title
       </Input>
       <div className="task-description">
         <label htmlFor="description">Description</label>
         <textarea
+          onChange={(e) =>
+            dispatch({
+              type: "description",
+              payload: { description: e.target.value },
+            })
+          }
+          value={state.description}
           name="description"
           id="description"
           cols="30"
@@ -40,20 +105,22 @@ const AddNewTask = () => {
       </div>
       <div className="task-columns">
         <label>Subtasks</label>
-        {/* {state.columns.map((column) => (
+        {state.subTasks.map((subTask) => (
           <InputAndDelete
-            id={column.id}
-            key={column.id}
+            id={subTask.id}
+            key={subTask.id}
             placeholder="Add New Column"
             updateValue={dispatch}
-            value={column.title}
+            value={subTask.title}
           />
-        ))} */}
+        ))}
         <Button
           type="button"
           customClass="add-subtasks-button"
-          handleClick={() => {
-            // dispatch({ type: "add", payload: {} });1
+          handleClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dispatch({ type: "add", payload: {} });
           }}
         >
           + Add New Subtask
@@ -63,22 +130,9 @@ const AddNewTask = () => {
         description="Status"
         name="task-status"
         id="task-status"
-        // options={[
-        //   {
-        //     value: "todo",
-        //     label: "To Do",
-        //   },
-        //   {
-        //     value: "in-progress",
-        //     label: "In Progress",
-        //   },
-        //   {
-        //     value: "done",
-        //     label: "Done",
-        //   },
-        // ]}
+        options={["Todo", "In Progress", "Done"]}
       />
-      <Button type="submit" onClick={(e) => e.preventDefault()}>
+      <Button type="submit" handleClick={() => console.log("form submitted")}>
         Create New Board
       </Button>
     </form>

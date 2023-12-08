@@ -8,7 +8,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.7rem;
 }
 
 .task-details h2 {
@@ -22,7 +22,7 @@
   /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .subtask {

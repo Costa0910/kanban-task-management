@@ -13,7 +13,7 @@ const initialState = {
       id: nanoid(),
     },
     {
-      title: "In Progress",
+      title: "Doing",
       id: nanoid(),
     },
     {
@@ -33,7 +33,7 @@ const reducer = (state, action) => {
         ...state,
         name: title,
       };
-    case "column":
+    case "update":
       toUpdate = state.columns.findIndex((column) => column.id === id);
       return {
         ...state,

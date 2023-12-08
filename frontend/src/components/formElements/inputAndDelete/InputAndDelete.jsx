@@ -5,11 +5,9 @@ const InputAndDelete = ({ value, updateValue, placeholder, id }) => {
   const handleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(e.target);
     if (e.target.name === "title") {
-      updateValue({ type: "column", payload: { title: e.target.value, id } });
+      updateValue({ type: "update", payload: { title: e.target.value, id } });
     } else {
-      console.log(id);
       updateValue({ type: "delete", payload: { id } });
     }
   };
