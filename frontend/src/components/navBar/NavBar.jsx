@@ -4,29 +4,42 @@ import Modal from "../modal/Modal";
 import AddNewTask from "../content/column/addNewTask/AddNewTask";
 import Menu from "../menu/Menu";
 import Button from "../formElements/button/Button";
-
+import AddNewBoard from "../board/addNewBoard/AddNewBoard";
+import Confirm from "../confirm/Confirm";
 import { useAppContext } from "../../context/AppContext";
 import { useGetSize } from "../../hooks/getSize";
+import { nanoid } from "nanoid";
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "settings":
       return {
-        addTask: false,
+        ...state,
         menu: false,
         settings: !state.settings,
       };
     case "addTask":
       return {
-        settings: false,
+        ...state,
         menu: false,
         addTask: !state.addTask,
       };
     case "menu":
       return {
-        settings: false,
-        addTask: false,
+        ...state,
         menu: !state.menu,
+      };
+    case "edit":
+      return {
+        ...state,
+        settings: false,
+        edit: !state.edit,
+      };
+    case "delete":
+      return {
+        ...state,
+        settings: false,
+        delete: !state.delete,
       };
     default:
       return state;
@@ -40,9 +53,19 @@ const NavBar = () => {
     settings: false,
     addTask: false,
     menu: false,
+    edit: false,
+    delete: false,
   });
 
   const { activeBoard } = useAppContext();
+
+  const updateBoard = {
+    name: activeBoard.name,
+    columns: activeBoard.columns.map((column) => ({
+      id: nanoid(),
+      title: column,
+    })),
+  };
 
   return (
     <div className="nav">
@@ -105,11 +128,46 @@ const NavBar = () => {
             isOpen={state.settings}
             classes={"settings-modal"}
           >
-            <button className="settings-edit">Edit Board</button>
-            <button className="danger">Delete Board</button>
+            <button
+              className="settings-edit"
+              onClick={() => dispatch({ type: "edit" })}
+            >
+              Edit Board
+            </button>
+            <button
+              className="danger"
+              onClick={() => dispatch({ type: "delete" })}
+            >
+              Delete Board
+            </button>
           </Modal>
         )}
       </div>
+
+      {state.edit && (
+        <Modal
+          handleClose={() => dispatch({ type: "edit" })}
+          isOpen={state.edit}
+        >
+          <AddNewBoard initialState={updateBoard} />
+        </Modal>
+      )}
+      {state.delete && (
+        <Modal
+          handleClose={() => dispatch({ type: "delete" })}
+          isOpen={state.delete}
+        >
+          <Confirm
+            cancel={() => {
+              dispatch({ type: "delete", payload: {} });
+            }}
+            confirm={() => dispatch({ type: "delete", payload: {} })}
+            message={`
+              Are you sure you want to delete the '${activeBoard.name}' board? This action will remove all columns and tasks and cannot be reversed.`}
+            type={"board"}
+          />
+        </Modal>
+      )}
     </div>
   );
 };

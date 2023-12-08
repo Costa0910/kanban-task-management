@@ -1,11 +1,12 @@
 import Input from "../../formElements/input/Input";
 import InputAndDelete from "../../formElements/inputAndDelete/InputAndDelete";
 import Button from "../../formElements/button/Button";
+import PropTypes from "prop-types";
 import { nanoid } from "nanoid";
 
 import { useReducer } from "react";
 
-const initialState = {
+const defaultState = {
   name: "",
   columns: [
     {
@@ -71,10 +72,9 @@ const reducer = (state, action) => {
 
 import "./addNewBoard.css";
 
-const AddNewBoard = () => {
+const AddNewBoard = ({ initialState = defaultState }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log(state);
   return (
     <form
       className="add-new-board"
@@ -121,6 +121,10 @@ const AddNewBoard = () => {
       </Button>
     </form>
   );
+};
+
+AddNewBoard.propTypes = {
+  initialState: PropTypes.object,
 };
 
 export default AddNewBoard;
