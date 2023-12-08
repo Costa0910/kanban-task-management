@@ -7,7 +7,7 @@
   justify-content: center;
   transition: all 0.5s ease-in-out;
   overflow: hidden;
-  z-index: 999;
+  z-index: 9999;
 }
 
 .menu-modal {
@@ -75,11 +75,18 @@
 
 .modal.task-settings-modal {
   bottom: 8rem;
-  margin-left: 20rem;
+  justify-content: flex-end;
+  margin-left: 32vw;
 }
 
 .task-settings-modal .modal-content {
   min-width: 200px;
   width: 200px;
   gap: 0.8rem;
+}
+
+@media screen and (min-width: 976px) {
+  .modal.task-settings-modal {
+    margin-left: 26vw;
+  }
 }
