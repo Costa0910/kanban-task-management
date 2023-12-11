@@ -2,6 +2,7 @@ import Input from "../../formElements/input/Input";
 import InputAndDelete from "../../formElements/inputAndDelete/InputAndDelete";
 import Button from "../../formElements/button/Button";
 import PropTypes from "prop-types";
+import { useAppDispatch } from "../../../context/AppContext";
 import { nanoid } from "nanoid";
 
 import { useReducer } from "react";
@@ -72,17 +73,33 @@ const reducer = (state, action) => {
 
 import "./addNewBoard.css";
 
-const AddNewBoard = ({ initialState = defaultState }) => {
+const AddNewBoard = ({ initialState = defaultState, handleClose }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const addNewBoard = useAppDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // const newBoard = {
+    //   id: nanoid(),
+    //   name: state.name,
+    //   columns: state.columns.map((column) => ({
+    //     ...state.columns,
+    //     color: "#ebecf0",
+    //   })),
+    //   tasks: [],
+    // };
+
+    addNewBoard({
+      type: "ADD_BOARD",
+      payload: state,
+    });
+
+    // close the modal
+    handleClose();
+  };
 
   return (
-    <form
-      className="add-new-board"
-      onSubmit={(e) => {
-        e.preventDefault();
-        console.log(state);
-      }}
-    >
+    <form className="add-new-board" onSubmit={handleSubmit}>
       <h2>Add New Board</h2>
       <Input
         type="text"
@@ -109,7 +126,8 @@ const AddNewBoard = ({ initialState = defaultState }) => {
         <Button
           type="button"
           customClass="add-column-button"
-          handleClick={() => {
+          handleClick={(e) => {
+            e.preventDefault();
             dispatch({ type: "add", payload: {} });
           }}
         >
@@ -125,6 +143,7 @@ const AddNewBoard = ({ initialState = defaultState }) => {
 
 AddNewBoard.propTypes = {
   initialState: PropTypes.object,
+  handleClose: PropTypes.func,
 };
 
 export default AddNewBoard;

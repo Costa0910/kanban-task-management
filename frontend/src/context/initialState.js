@@ -5,7 +5,23 @@ export default {
   activeBoard: {
     name: "Platform Launch",
     id: initialBoardId,
-    columns: ["Todo", "Doing", "Done"],
+    columns: [
+      {
+        title: "Todo",
+        color: "#49C4E5",
+        id: nanoid(),
+      },
+      {
+        title: "Doing",
+        color: "#8471F2",
+        id: nanoid(),
+      },
+      {
+        title: "Done",
+        color: "#67E2AE",
+        id: nanoid(),
+      },
+    ],
     tasks: [
       {
         title: "Build UI for onboarding flow",
@@ -499,7 +515,23 @@ export default {
     {
       name: "Platform Launch",
       id: initialBoardId,
-      columns: ["Todo", "Doing", "Done"],
+      columns: [
+        {
+          title: "Todo",
+          color: "#49C4E5",
+          id: nanoid(),
+        },
+        {
+          title: "Doing",
+          color: "#8471F2",
+          id: nanoid(),
+        },
+        {
+          title: "Done",
+          color: "#67E2AE",
+          id: nanoid(),
+        },
+      ],
       tasks: [
         {
           title: "Build UI for onboarding flow",
@@ -993,7 +1025,23 @@ export default {
     },
     {
       name: "Marketing Plan",
-      columns: ["Todo", "Doing", "Done"],
+      columns: [
+        {
+          title: "Todo",
+          color: "#49C4E5",
+          id: nanoid(),
+        },
+        {
+          title: "Doing",
+          color: "#8471F2",
+          id: nanoid(),
+        },
+        {
+          title: "Done",
+          color: "#67E2AE",
+          id: nanoid(),
+        },
+      ],
       id: nanoid(),
       tasks: [
         {
@@ -1092,7 +1140,23 @@ export default {
 
     {
       name: "Roadmap",
-      columns: ["Todo", "Doing", "Done"],
+      columns: [
+        {
+          title: "Todo",
+          color: "#49C4E5",
+          id: nanoid(),
+        },
+        {
+          title: "Doing",
+          color: "#8471F2",
+          id: nanoid(),
+        },
+        {
+          title: "Done",
+          color: "#67E2AE",
+          id: nanoid(),
+        },
+      ],
       id: nanoid(),
       tasks: [
         {

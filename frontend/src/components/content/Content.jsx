@@ -14,7 +14,7 @@ const Content = () => {
       ) : (
         <>
           {activeBoard.columns.map((column) => (
-            <Column key={column} column={column} />
+            <Column key={column.id} column={column} />
           ))}
           {/* <div className="add-column" role="button">
             <img src="./icon-add-column.svg" alt="add column" />

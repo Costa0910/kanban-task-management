@@ -12,8 +12,8 @@ const Select = ({ description, options }) => {
         onChange={() => console.log("selected")}
       >
         {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
+          <option key={option.id} value={option.title}>
+            {option.title}
           </option>
         ))}
       </select>

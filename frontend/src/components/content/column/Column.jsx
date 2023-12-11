@@ -6,12 +6,17 @@ import PropTypes from "prop-types";
 
 const Column = ({ column }) => {
   const { activeBoard } = useAppContext();
-  const tasks = activeBoard.tasks.filter((task) => task.status === column);
+  const tasks = activeBoard.tasks.filter(
+    (task) => task.status === column.title
+  );
   return (
     <div className="column">
       <div className="column__title">
-        <span className="column__title-icon"></span>
-        {column}
+        <span
+          className="column__title-icon"
+          style={{ backgroundColor: column.color }}
+        ></span>
+        {column.title}
         <span>({tasks.length})</span>
       </div>
       <div className="column__content">
@@ -24,7 +29,7 @@ const Column = ({ column }) => {
 };
 
 Column.propTypes = {
-  column: PropTypes.string.isRequired,
+  column: PropTypes.object.isRequired,
 };
 
 export default Column;

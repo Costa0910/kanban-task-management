@@ -10,10 +10,9 @@ import { useAppContext, useAppDispatch } from "../../context/AppContext";
 const Item = ({ name, customClass, id }) => {
   const dispatchBoard = useAppDispatch();
 
-  const handleClick = async (e) => {
+  const handleClick = (e) => {
     e.stopPropagation();
     dispatchBoard({ type: "UPDATE_ACTIVE_BOARD", payload: { id } });
-    console.log(id);
   };
   return (
     <div
@@ -41,10 +40,11 @@ const Menu = ({ handleClose }) => {
   const handleClick = () => {
     setState((prev) => !prev);
 
-    if (state) {
-      handleClose();
-    }
+    // if (state) {
+    //   handleClose();
+    // }
   };
+  console.log(state);
   return (
     <div className="menu">
       <div className="menu__count">
@@ -73,7 +73,7 @@ const Menu = ({ handleClose }) => {
           </button>
           {state && (
             <Modal handleClose={() => setState(false)} isOpen={state}>
-              <AddNewBoard />
+              <AddNewBoard handleClose={() => setState(false)} />
             </Modal>
           )}
         </div>
