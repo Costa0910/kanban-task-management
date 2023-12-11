@@ -4,6 +4,7 @@ import TaskDetails from "./taskDetails/TaskDetails";
 import AddNewTask from "../addNewTask/AddNewTask";
 import Modal from "../../../modal/Modal";
 import { useAppDispatch } from "../../../../context/AppContext";
+import Confirm from "../../../confirm/Confirm";
 import { useState } from "react";
 
 const Task = ({ task }) => {
@@ -115,17 +116,33 @@ const Task = ({ task }) => {
         )
       }
       {
-        // open modal for delete task showDetails.delete && (
-        <Modal
-          handleClose={(e) => {
-            e.stopPropagation();
-            setShowDetails((prev) => ({ ...prev, delete: false }));
-          }}
-          isOpen={showDetails.delete}
-          classes={"delete-task-modal"}
-        >
-          {/* Add your delete task form here */}
-        </Modal>
+        // open modal for delete task
+        showDetails.delete && (
+          <Modal
+            handleClose={(e) => {
+              e.stopPropagation();
+              setShowDetails((prev) => ({ ...prev, delete: false }));
+            }}
+            isOpen={showDetails.delete}
+            classes={"delete-task-modal"}
+          >
+            <Confirm
+              cancel={() => {
+                setShowDetails((prev) => ({ ...prev, delete: false }));
+              }}
+              confirm={() => {
+                updateTask({
+                  type: "DELETE_TASK",
+                  payload: task.id,
+                });
+                setShowDetails((prev) => ({ ...prev, delete: false }));
+              }}
+              message={`
+              Are you sure you want to delete the '${task.title}' task and its subtasks? This action cannot be reverted.`}
+              type={"task"}
+            />
+          </Modal>
+        )
       }
     </div>
   );

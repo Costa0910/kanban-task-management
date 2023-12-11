@@ -111,6 +111,26 @@ export default (state, action) => {
           },
       };
 
+    case "DELETE_TASK":
+      helper = state.activeBoard.tasks.filter(
+        (task) => task.id !== action.payload
+      );
+      return {
+        ...state,
+        activeBoard: {
+          ...state.activeBoard,
+          tasks: helper,
+        },
+        boards: state.boards.map((board) =>
+          board.id === state.activeBoard.id
+            ? {
+                ...board,
+                tasks: helper,
+              }
+            : board
+        ),
+      };
+
     default:
       return state;
   }
