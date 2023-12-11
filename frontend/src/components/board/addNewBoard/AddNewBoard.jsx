@@ -2,10 +2,11 @@ import Input from "../../formElements/input/Input";
 import InputAndDelete from "../../formElements/inputAndDelete/InputAndDelete";
 import Button from "../../formElements/button/Button";
 import PropTypes from "prop-types";
-import { useAppDispatch } from "../../../context/AppContext";
+// import { useAppDispatch } from "../../../context/AppContext";
+import { useReducer } from "react";
 import { nanoid } from "nanoid";
 
-import { useReducer } from "react";
+import "./addNewBoard.css";
 
 const defaultState = {
   name: "",
@@ -13,14 +14,17 @@ const defaultState = {
     {
       title: "Todo",
       id: nanoid(),
+      color: "#ebecf0",
     },
     {
       title: "Doing",
       id: nanoid(),
+      color: "#ebecf0",
     },
     {
       title: "Done",
       id: nanoid(),
+      color: "#ebecf0",
     },
   ],
 };
@@ -63,6 +67,7 @@ const reducer = (state, action) => {
           {
             title: "",
             id: nanoid(),
+            color: "#ebecf0",
           },
         ],
       };
@@ -71,36 +76,45 @@ const reducer = (state, action) => {
   }
 };
 
-import "./addNewBoard.css";
-
-const AddNewBoard = ({ initialState = defaultState, handleClose }) => {
+const AddNewBoard = ({
+  initialState = defaultState,
+  handleSubmit,
+  type,
+  buttonText,
+}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const addNewBoard = useAppDispatch();
+  // const addNewBoard = useAppDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // const newBoard = {
-    //   id: nanoid(),
-    //   name: state.name,
-    //   columns: state.columns.map((column) => ({
-    //     ...state.columns,
-    //     color: "#ebecf0",
-    //   })),
-    //   tasks: [],
-    // };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // const newBoard = {
+  //   //   id: nanoid(),
+  //   //   name: state.name,
+  //   //   columns: state.columns.map((column) => ({
+  //   //     ...state.columns,
+  //   //     color: "#ebecf0",
+  //   //   })),
+  //   //   tasks: [],
+  //   // };
 
-    addNewBoard({
-      type: "ADD_BOARD",
-      payload: state,
-    });
+  //   addNewBoard({
+  //     type: "ADD_BOARD",
+  //     payload: state,
+  //   });
 
-    // close the modal
-    handleClose();
-  };
+  //   // close the modal
+  //   handleClose();
+  // };
 
   return (
-    <form className="add-new-board" onSubmit={handleSubmit}>
-      <h2>Add New Board</h2>
+    <form
+      className="add-new-board"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit(state);
+      }}
+    >
+      <h2>{type} Board</h2>
       <Input
         type="text"
         placeholder="e.g. Web Design"
@@ -131,11 +145,17 @@ const AddNewBoard = ({ initialState = defaultState, handleClose }) => {
             dispatch({ type: "add", payload: {} });
           }}
         >
-          Add New Board
+          + Add New Column
         </Button>
       </div>
-      <Button type="submit" onClick={(e) => e.preventDefault()}>
-        Create New Board
+      <Button
+        type="submit"
+        handleClick={(e) => {
+          e.preventDefault();
+          handleSubmit(state);
+        }}
+      >
+        {buttonText}
       </Button>
     </form>
   );
@@ -143,7 +163,9 @@ const AddNewBoard = ({ initialState = defaultState, handleClose }) => {
 
 AddNewBoard.propTypes = {
   initialState: PropTypes.object,
-  handleClose: PropTypes.func,
+  handleSubmit: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  buttonText: PropTypes.string,
 };
 
 export default AddNewBoard;

@@ -47,6 +47,26 @@ export default (state, action) => {
             : board
         ),
       };
+
+    case "EDIT_BOARD":
+      return {
+        ...state,
+        activeBoard: {
+          ...state.activeBoard,
+          name: action.payload.name,
+          columns: action.payload.columns,
+        },
+        boards: state.boards.map((board) =>
+          board.id === state.activeBoard.id
+            ? {
+                ...board,
+                name: action.payload.name,
+                columns: action.payload.columns,
+              }
+            : board
+        ),
+      };
+
     default:
       return state;
   }

@@ -36,15 +36,19 @@ Item.propTypes = {
 
 const Menu = ({ handleClose }) => {
   const [state, setState] = useState(false);
+  const dispatchBoard = useAppDispatch();
   const { boards, activeBoard } = useAppContext();
   const handleClick = () => {
     setState((prev) => !prev);
-
-    // if (state) {
-    //   handleClose();
-    // }
   };
-  console.log(state);
+
+  const addBoard = (board) => {
+    dispatchBoard({ type: "ADD_BOARD", payload: board });
+    setState(false);
+    if (handleClose) {
+      handleClose();
+    }
+  };
   return (
     <div className="menu">
       <div className="menu__count">
@@ -73,7 +77,11 @@ const Menu = ({ handleClose }) => {
           </button>
           {state && (
             <Modal handleClose={() => setState(false)} isOpen={state}>
-              <AddNewBoard handleClose={() => setState(false)} />
+              <AddNewBoard
+                handleSubmit={addBoard}
+                type="Add New"
+                buttonText="Create New Board"
+              />
             </Modal>
           )}
         </div>

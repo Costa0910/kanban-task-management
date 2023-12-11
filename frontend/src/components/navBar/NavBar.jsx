@@ -6,9 +6,9 @@ import Menu from "../menu/Menu";
 import Button from "../formElements/button/Button";
 import AddNewBoard from "../board/addNewBoard/AddNewBoard";
 import Confirm from "../confirm/Confirm";
-import { useAppContext } from "../../context/AppContext";
+import { useAppContext, useAppDispatch } from "../../context/AppContext";
 import { useGetSize } from "../../hooks/getSize";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -58,13 +58,19 @@ const NavBar = () => {
   });
 
   const { activeBoard } = useAppContext();
+  const updateBoard = useAppDispatch();
 
-  const updateBoard = {
+  const handleEdit = (state) => {
+    updateBoard({
+      type: "EDIT_BOARD",
+      payload: state,
+    });
+    dispatch({ type: "edit" });
+  };
+
+  const actualBoard = {
     name: activeBoard.name,
-    columns: activeBoard.columns.map((column) => ({
-      id: nanoid(),
-      title: column,
-    })),
+    columns: activeBoard.columns,
   };
 
   return (
@@ -149,7 +155,12 @@ const NavBar = () => {
           handleClose={() => dispatch({ type: "edit" })}
           isOpen={state.edit}
         >
-          <AddNewBoard initialState={updateBoard} />
+          <AddNewBoard
+            initialState={actualBoard}
+            handleSubmit={handleEdit}
+            type={"Edit"}
+            buttonText={"Save Changes"}
+          />
         </Modal>
       )}
       {state.delete && (
