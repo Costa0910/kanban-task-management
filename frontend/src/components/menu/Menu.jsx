@@ -6,7 +6,6 @@ import { useState } from "react";
 
 import "./menu.css";
 import { useAppContext, useAppDispatch } from "../../context/AppContext";
-import { getTasks } from "../../context/fetchData";
 
 const Item = ({ name, customClass, id }) => {
   const dispatchBoard = useAppDispatch();
@@ -14,9 +13,7 @@ const Item = ({ name, customClass, id }) => {
   const handleClick = async (e) => {
     e.stopPropagation();
     dispatchBoard({ type: "UPDATE_ACTIVE_BOARD", payload: { id } });
-    const test = await getTasks();
-    console.log(test);
-    alert("test");
+    console.log(id);
   };
   return (
     <div
