@@ -186,7 +186,12 @@ const NavBar = () => {
             cancel={() => {
               dispatch({ type: "delete", payload: {} });
             }}
-            confirm={() => dispatch({ type: "delete", payload: {} })}
+            confirm={() => {
+              updateBoard({
+                type: "DELETE_BOARD",
+              });
+              dispatch({ type: "delete", payload: {} });
+            }}
             message={`
               Are you sure you want to delete the '${activeBoard.name}' board? This action will remove all columns and tasks and cannot be reversed.`}
             type={"board"}

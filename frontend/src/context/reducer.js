@@ -29,6 +29,7 @@ export default (state, action) => {
       return {
         ...state,
         boards: [...state.boards, helper],
+        activeBoard: helper,
       };
     case "ADD_TASK":
       helper = {
@@ -92,6 +93,22 @@ export default (state, action) => {
               }
             : board
         ),
+      };
+    case "DELETE_BOARD":
+      helper = state.boards.findIndex(
+        (board) => board.id === state.activeBoard.id
+      );
+      return {
+        ...state,
+        boards: state.boards.filter(
+          (board) => board.id !== state.activeBoard.id
+        ),
+        activeBoard: state.boards[helper + 1] ||
+          state.boards[helper - 1] || {
+            name: "",
+            columns: [],
+            tasks: [],
+          },
       };
 
     default:
