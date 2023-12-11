@@ -1,56 +1,63 @@
 import { useReducer } from "react";
-// import Modal from "../../modal/Modal";
 import { nanoid } from "nanoid";
 import Input from "../../../formElements/input/Input";
 import InputAndDelete from "../../../formElements/inputAndDelete/InputAndDelete";
 import Button from "../../../formElements/button/Button";
-// import { nanoid } from "nanoid";
+import PropTypes from "prop-types";
 import Select from "../../../formElements/select/Select";
 import "./addNewTask.css";
 
+import { useAppContext, useAppDispatch } from "../../../../context/AppContext";
+
 const initialState = {
-  name: "",
+  title: "",
   description: "",
-  subTasks: [],
+  status: "Todo",
+  subtasks: [],
 };
 
 const reducer = (state, action) => {
   let toUpdate;
-  const { title, id } = action.payload;
+  const { title, id, description } = action.payload;
 
   switch (action.type) {
     case "name":
       return {
         ...state,
-        name: title,
+        title,
       };
     case "description":
       return {
         ...state,
-        description: title,
+        description,
       };
-    case "update":
-      toUpdate = state.subTasks.findIndex((subTask) => subTask.id === id);
+    case "status":
       return {
         ...state,
-        subTasks: [
-          ...state.subTasks.slice(0, toUpdate),
-          { ...state.subTasks[toUpdate], title },
-          ...state.subTasks.slice(toUpdate + 1),
+        status: title,
+      };
+    case "update":
+      toUpdate = state.subtasks.findIndex((subTask) => subTask.id === id);
+      return {
+        ...state,
+        subtasks: [
+          ...state.subtasks.slice(0, toUpdate),
+          { ...state.subtasks[toUpdate], title },
+          ...state.subtasks.slice(toUpdate + 1),
         ],
       };
     case "delete":
-      toUpdate = state.subTasks.filter((subTask) => subTask.id != id);
+      toUpdate = state.subtasks.filter((subTask) => subTask.id != id);
       return {
         ...state,
-        subTasks: toUpdate,
+        subtasks: toUpdate,
       };
 
     case "add":
       return {
         ...state,
-        subTasks: [
-          ...state.subTasks,
+        subtasks: [
+          ...state.subtasks,
           {
             title: "",
             isCompleted: false,
@@ -63,21 +70,30 @@ const reducer = (state, action) => {
   }
 };
 
-const AddNewTask = () => {
+const AddNewTask = ({ handleClose }) => {
+  const addTask = useAppDispatch();
+  const { activeBoard } = useAppContext();
+
+  initialState.status = activeBoard.columns[0].title; // default status is first column
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addTask({
+      type: "ADD_TASK",
+      payload: state,
+    });
+
+    handleClose(); // close modal
+  };
+
   return (
-    <form
-      className="add-new-task"
-      onSubmit={(e) => {
-        e.preventDefault();
-        console.log("form submitted");
-      }}
-    >
+    <form className="add-new-task" onSubmit={handleSubmit}>
       <h2>Add New Task</h2>
       <Input
         type="text"
-        value={state.name}
+        value={state.title}
         placeholder="e.g. Take coffee break"
         customClass="new-task-name"
         onChange={(e) =>
@@ -101,11 +117,11 @@ const AddNewTask = () => {
           cols="30"
           rows="8"
           placeholder="e.g. It's always good to take a break. This 15 minute break will recharge you batteries a little."
-        ></textarea>
+        />
       </div>
       <div className="task-columns">
         <label>Subtasks</label>
-        {state.subTasks.map((subTask) => (
+        {state.subtasks.map((subTask) => (
           <InputAndDelete
             id={subTask.id}
             key={subTask.id}
@@ -119,7 +135,6 @@ const AddNewTask = () => {
           customClass="add-subtasks-button"
           handleClick={(e) => {
             e.preventDefault();
-            e.stopPropagation();
             dispatch({ type: "add", payload: {} });
           }}
         >
@@ -130,13 +145,21 @@ const AddNewTask = () => {
         description="Status"
         name="task-status"
         id="task-status"
-        options={["Todo", "In Progress", "Done"]}
+        handleClick={(e) =>
+          dispatch({ type: "status", payload: { title: e.target.value } })
+        }
+        status={state.status}
+        options={activeBoard.columns}
       />
       <Button type="submit" handleClick={() => console.log("form submitted")}>
         Create New Board
       </Button>
     </form>
   );
+};
+
+AddNewTask.propTypes = {
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default AddNewTask;

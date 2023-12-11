@@ -30,6 +30,23 @@ export default (state, action) => {
         ...state,
         boards: [...state.boards, helper],
       };
+    case "ADD_TASK":
+      helper = {
+        id: nanoid(),
+        ...action.payload,
+      };
+      return {
+        ...state,
+        activeBoard: {
+          ...state.activeBoard,
+          tasks: [...state.activeBoard.tasks, helper],
+        },
+        boards: state.boards.map((board) =>
+          board.id === state.activeBoard.id
+            ? { ...board, tasks: [...board.tasks, helper] }
+            : board
+        ),
+      };
     default:
       return state;
   }

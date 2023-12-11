@@ -2,14 +2,15 @@ import PropTypes from "prop-types";
 
 import "./select.css";
 
-const Select = ({ description, options }) => {
+const Select = ({ description, options, status, handleClick }) => {
   return (
     <div className="custom-select">
       <label htmlFor="status">{description}</label>
       <select
         id="status"
         name="currentStatus"
-        onChange={() => console.log("selected")}
+        onChange={handleClick}
+        defaultValue={status}
       >
         {options.map((option) => (
           <option key={option.id} value={option.title}>
@@ -25,6 +26,8 @@ const Select = ({ description, options }) => {
 Select.propTypes = {
   description: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
+  status: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Select;

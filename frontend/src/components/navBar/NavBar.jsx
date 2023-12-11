@@ -112,7 +112,7 @@ const NavBar = () => {
             isOpen={state.addTask}
           >
             {/* <Menu /> */}
-            <AddNewTask />
+            <AddNewTask handleClose={() => dispatch({ type: "addTask" })} />
           </Modal>
         )}
 
