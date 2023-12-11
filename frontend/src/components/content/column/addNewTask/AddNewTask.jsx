@@ -7,12 +7,12 @@ import PropTypes from "prop-types";
 import Select from "../../../formElements/select/Select";
 import "./addNewTask.css";
 
-import { useAppContext, useAppDispatch } from "../../../../context/AppContext";
+import { useAppContext } from "../../../../context/AppContext";
 
-const initialState = {
+const defaultState = {
   title: "",
   description: "",
-  status: "Todo",
+  status: "",
   subtasks: [],
 };
 
@@ -70,27 +70,39 @@ const reducer = (state, action) => {
   }
 };
 
-const AddNewTask = ({ handleClose }) => {
-  const addTask = useAppDispatch();
+const AddNewTask = ({
+  handleSubmit,
+  initialState = defaultState,
+  type,
+  buttonText,
+}) => {
+  // const addTask = useAppDispatch();
   const { activeBoard } = useAppContext();
 
-  initialState.status = activeBoard.columns[0].title; // default status is first column
+  // if there is no status in the initial state set it to the first column
+  initialState.status = initialState.status || activeBoard.columns[0].title;
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addTask({
-      type: "ADD_TASK",
-      payload: state,
-    });
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   addTask({
+  //     type: "ADD_TASK",
+  //     payload: state,
+  //   });
 
-    handleClose(); // close modal
-  };
+  //   handleClose(); // close modal
+  // };
 
   return (
-    <form className="add-new-task" onSubmit={handleSubmit}>
-      <h2>Add New Task</h2>
+    <form
+      className="add-new-task"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit(state);
+      }}
+    >
+      <h2>{type} Task</h2>
       <Input
         type="text"
         value={state.title}
@@ -152,14 +164,17 @@ const AddNewTask = ({ handleClose }) => {
         options={activeBoard.columns}
       />
       <Button type="submit" handleClick={() => console.log("form submitted")}>
-        Create New Board
+        {buttonText}
       </Button>
     </form>
   );
 };
 
 AddNewTask.propTypes = {
-  handleClose: PropTypes.func.isRequired,
+  initialState: PropTypes.object,
+  handleSubmit: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  buttonText: PropTypes.string,
 };
 
 export default AddNewTask;

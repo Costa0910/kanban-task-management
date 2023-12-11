@@ -73,6 +73,15 @@ const NavBar = () => {
     columns: activeBoard.columns,
   };
 
+  const handleNewTask = (state) => {
+    updateBoard({
+      type: "ADD_TASK",
+      payload: state,
+    });
+
+    dispatch({ type: "addTask" });
+  };
+
   return (
     <div className="nav">
       <div className="nav__brand">
@@ -118,7 +127,12 @@ const NavBar = () => {
             isOpen={state.addTask}
           >
             {/* <Menu /> */}
-            <AddNewTask handleClose={() => dispatch({ type: "addTask" })} />
+            <AddNewTask
+              // handleClose={() => dispatch({ type: "addTask" })
+              type="Add New"
+              buttonText="Create Task"
+              handleSubmit={handleNewTask}
+            />
           </Modal>
         )}
 

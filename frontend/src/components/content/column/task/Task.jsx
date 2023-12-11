@@ -1,17 +1,33 @@
 import "./task.css";
 import PropTypes from "prop-types";
 import TaskDetails from "./taskDetails/TaskDetails";
+import AddNewTask from "../addNewTask/AddNewTask";
 import Modal from "../../../modal/Modal";
+import { useAppDispatch } from "../../../../context/AppContext";
 import { useState } from "react";
 
 const Task = ({ task }) => {
+  const updateTask = useAppDispatch();
+
   const [showDetails, setShowDetails] = useState({
     show: false,
     settings: false,
+    edit: false,
+    delete: false,
   });
+
   const completed = task.subtasks.filter(
     (subtask) => subtask.isCompleted
   ).length;
+
+  const handleUpdateTask = (task) => {
+    updateTask({
+      type: "UPDATE_TASK",
+      payload: task,
+    });
+    setShowDetails((prev) => ({ ...prev, edit: false }));
+  };
+
   return (
     <div
       className="task"
@@ -40,9 +56,8 @@ const Task = ({ task }) => {
           />
         </Modal>
       )}
-
       {
-        // open modal for settings, edit task ou delete
+        // open modal for settings, edit task and delete
         showDetails.settings && (
           <Modal
             handleClose={(e) => {
@@ -54,15 +69,63 @@ const Task = ({ task }) => {
           >
             <button
               className="task-settings-modal__edit"
-              onClick={() => console.log("edit")}
+              onClick={() =>
+                setShowDetails((prev) => ({
+                  ...prev,
+                  edit: true,
+                  show: false,
+                }))
+              }
             >
               Edit Task
             </button>
-            <button className="danger" onClick={() => console.log("delete")}>
+            <button
+              className="danger"
+              onClick={() =>
+                setShowDetails((prev) => ({
+                  ...prev,
+                  delete: true,
+                  show: false,
+                }))
+              }
+            >
               Delete Task
             </button>
           </Modal>
         )
+      }
+      {
+        // open modal for edit task
+        showDetails.edit && (
+          <Modal
+            handleClose={(e) => {
+              e.stopPropagation();
+              setShowDetails((prev) => ({ ...prev, edit: false }));
+            }}
+            isOpen={showDetails.edit}
+            classes={"edit-task-modal"}
+          >
+            <AddNewTask
+              initialState={task}
+              handleSubmit={handleUpdateTask}
+              type="Edit"
+              buttonText="Save Changes"
+            />
+          </Modal>
+        )
+      }
+      {
+        // open modal for delete task showDetails.delete && (
+        <Modal
+          handleClose={(e) => {
+            e.stopPropagation();
+            setShowDetails((prev) => ({ ...prev, delete: false }));
+          }}
+          isOpen={showDetails.delete}
+          classes={"delete-task-modal"}
+        >
+          {/* Add your delete task form here */}
+        </Modal>
       }
     </div>
   );

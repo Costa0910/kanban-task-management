@@ -66,6 +66,33 @@ export default (state, action) => {
             : board
         ),
       };
+    case "UPDATE_TASK":
+      helper = {
+        ...state.activeBoard.tasks.find(
+          (task) => task.id === action.payload.id
+        ),
+        ...action.payload,
+      };
+
+      return {
+        ...state,
+        activeBoard: {
+          ...state.activeBoard,
+          tasks: state.activeBoard.tasks.map((task) =>
+            task.id === action.payload.id ? helper : task
+          ),
+        },
+        boards: state.boards.map((board) =>
+          board.id === state.activeBoard.id
+            ? {
+                ...board,
+                tasks: board.tasks.map((task) =>
+                  task.id === action.payload.id ? helper : task
+                ),
+              }
+            : board
+        ),
+      };
 
     default:
       return state;
