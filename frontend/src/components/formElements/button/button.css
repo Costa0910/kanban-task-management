@@ -8,6 +8,7 @@
   transition: all 0.25s;
   border-radius: 1.5rem;
   background: var(--main-purple, #635fc7);
+  transition: var(--transition);
 
   color: var(--White, #fff);
   font-family: Plus Jakarta Sans;

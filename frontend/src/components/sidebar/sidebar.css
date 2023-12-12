@@ -1,9 +1,12 @@
 .sidebar {
-  height: 100%;
+  height: 90%;
   width: 100%;
   color: var(--items-color);
   display: flex;
   flex-direction: column;
+  transition: var(--transition);
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .sidebar__logo {
@@ -22,30 +25,6 @@
 }
 
 .sidebar__menu .menu {
-  min-height: 500px;
-  height: 70vh;
-}
-
-.sidebar__hide {
-  margin-top: auto;
-  /* padding: 0 var(--padding); */
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
-  width: 100%;
-  min-height: 3rem;
-  border-radius: 0rem 6.25rem 6.25rem 0rem;
-  padding-left: var(--padding);
-}
-
-.sidebar__hide:hover {
-  background: var(--main-purple, #635fc7);
-  color: #fff;
-}
-
-.sidebar__hide span {
-  font-weight: 700;
-  line-height: normal;
+  min-height: 520px;
+  height: 100%;
 }

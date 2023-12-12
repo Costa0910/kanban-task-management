@@ -8,7 +8,7 @@ import AddNewBoard from "../board/addNewBoard/AddNewBoard";
 import Confirm from "../confirm/Confirm";
 import { useAppContext, useAppDispatch } from "../../context/AppContext";
 import { useGetSize } from "../../hooks/getSize";
-// import { nanoid } from "nanoid";
+import PropTypes from "prop-types";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -46,7 +46,7 @@ const reducer = (state, action) => {
   }
 };
 
-const NavBar = () => {
+const NavBar = ({ openSidebar }) => {
   const isMobile = useGetSize();
 
   const [state, dispatch] = useReducer(reducer, {
@@ -85,8 +85,17 @@ const NavBar = () => {
   return (
     <div className="nav">
       <div className="nav__brand">
-        <img src="./logo.svg" alt="kanban logo" />
-
+        {openSidebar && (
+          <div className="nav__brand__desktop-logo">
+            <img src="./logo.svg" alt="kanban logo" />
+            <p>Kanban</p>
+          </div>
+        )}
+        <img
+          src="./logo.svg"
+          alt="kanban logo"
+          className="nav__brand__mobile-logo"
+        />
         <div role="button" className="nav__board-name">
           <p>{activeBoard.name}</p>
           <span
@@ -200,6 +209,10 @@ const NavBar = () => {
       )}
     </div>
   );
+};
+
+NavBar.propTypes = {
+  openSidebar: PropTypes.bool,
 };
 
 export default NavBar;

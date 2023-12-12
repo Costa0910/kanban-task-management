@@ -11,10 +11,6 @@ const SideBar = () => {
       <div className="sidebar__menu">
         <Menu />
       </div>
-      <div className="sidebar__hide">
-        <img src="./icon-hide-sidebar.svg" alt="hide sidebar" />
-        <span>Hide Sidebar</span>
-      </div>
     </div>
   );
 };

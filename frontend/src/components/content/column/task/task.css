@@ -9,11 +9,11 @@
   flex-direction: column;
   justify-content: center;
   gap: 0.3rem;
-  transition: all 0.2s ease-in-out;
 }
 
 .task:hover {
   transform: scale(1.05);
+  transition: var(--transition);
 }
 
 .task__title {

@@ -1,12 +1,8 @@
 .App {
   width: 100%;
   height: 100vh;
-  /* border: 1px solid red; */
   display: flex;
-  /* max-width: 1200px; */
-  /* margin: 0 auto; */
   overflow-y: hidden;
-  /* overflow-x: scroll; */
   position: relative;
 }
 
@@ -18,22 +14,18 @@
   box-shadow: var(--box-shadow);
   z-index: 10;
   border-right: var(--separator-border);
-  /* border: 1px solid red; */
 }
 
 .navbar-content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* gap: 0.3rem; */
-  /* background: var(--color-background); */
 }
 
 @media screen and (min-width: 576px) {
   .sidebar-container {
     display: block;
     width: 50%;
-    /* border-right: 1px solid red; */
   }
 
   .navbar-content {
@@ -59,4 +51,46 @@
   .navbar-content {
     width: 75%;
   }
+}
+
+.hide-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  font-size: 1.2rem;
+  border: none;
+  color: var(--items-color);
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 0rem 6.25rem 6.25rem 0rem;
+  padding-left: var(--padding);
+  transition: var(--transition);
+}
+
+.hide-button:hover {
+  background: var(--main-purple, #635fc7);
+  color: #fff;
+}
+
+.hide-button span {
+  font-weight: 700;
+  line-height: normal;
+}
+
+.hide.sidebar-container {
+  transition: var(--transition);
+  display: none;
+}
+
+.hide.navbar-content {
+  width: 100%;
+}
+
+.show-sidebar {
+  position: absolute;
+  bottom: 3.5rem;
 }

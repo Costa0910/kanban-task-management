@@ -64,6 +64,7 @@
 }
 
 .menu__item:not(.active):hover {
+  transition: var(--transition);
   background-color: var(--color-bg-add-column);
   color: var(--main-purple, #635fc7);
 }

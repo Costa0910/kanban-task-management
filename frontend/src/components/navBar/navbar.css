@@ -2,10 +2,9 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   height: 5rem;
   box-shadow: var(--box-shadow);
-  padding: var(--padding);
+  padding: 0 var(--padding);
   border-bottom: var(--separator-border);
 }
 
@@ -13,6 +12,27 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
+}
+
+.nav__brand__desktop-logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-weight: 700;
+  line-height: normal;
+  border-right: var(--separator-border);
+  letter-spacing: 0.1rem;
+  padding-right: 1rem;
+  color: var(--color-foreground);
+  transition: var(--transition);
+}
+
+.nav__brand__desktop-logo p {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
 }
 .nav__board-name {
   display: flex;
@@ -60,8 +80,14 @@ nav__board-name p {
 }
 
 @media screen and (min-width: 576px) {
-  .nav__brand img,
+  .nav__brand__mobile-logo,
   .nav__brand span {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .nav__brand__desktop-logo {
     display: none;
   }
 }

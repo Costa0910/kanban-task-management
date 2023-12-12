@@ -1,11 +1,9 @@
 .content {
-  /* border: 1px solid red; */
   display: flex;
   height: 100%;
   width: 100%;
   gap: 1rem;
   padding: var(--padding);
-  /* border: 1px solid red; */
   background-color: var(--color-bg);
   overflow-x: scroll;
   overflow-y: auto;
