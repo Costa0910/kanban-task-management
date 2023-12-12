@@ -60,6 +60,6 @@ Users should be able to:
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Armando Costa](https://www.your-site.com)
+- Frontend Mentor - [@Costa0910](https://www.frontendmentor.io/profile/Costa0910)
+- Linkedin - [Armando Costa](https://www.linkedin.com/in/armando-costa12/)
