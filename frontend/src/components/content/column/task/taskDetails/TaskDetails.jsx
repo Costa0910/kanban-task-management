@@ -1,4 +1,7 @@
-import { useAppContext } from "../../../../../context/AppContext";
+import {
+  useAppContext,
+  useAppDispatch,
+} from "../../../../../context/AppContext";
 import Checkbox from "../../../../formElements/checkbox/Checkbox";
 import Select from "../../../../formElements/select/Select";
 import PropTypes from "prop-types";
@@ -6,11 +9,32 @@ import "./taskDetails.css";
 
 const TaskDetails = ({ id, handleClick }) => {
   const { activeBoard } = useAppContext();
+  const dispatch = useAppDispatch();
+
   const task = activeBoard.tasks.find((task) => task.id === id);
   const completed = task.subtasks.filter(
     (subtask) => subtask.isCompleted
   ).length;
 
+  const changeStatus = (status) => {
+    dispatch({
+      type: "UPDATE_TASK_STATUS",
+      payload: {
+        id,
+        status,
+      },
+    });
+  };
+
+  const updateSubtask = (subtaskId) => {
+    dispatch({
+      type: "UPDATE_SUBTASK",
+      payload: {
+        taskId: id,
+        subtaskId,
+      },
+    });
+  };
   return (
     <div className="task-details">
       <div className="task-details__title">
@@ -28,16 +52,19 @@ const TaskDetails = ({ id, handleClick }) => {
           <Checkbox
             key={subtask.id}
             customClass="subtask"
-            handleClick={() => {
-              console.log("subtask checked");
-            }}
+            handleClick={() => updateSubtask(subtask.id)}
             checked={subtask.isCompleted}
           >
             {subtask.title}
           </Checkbox>
         ))}
       </div>
-      <Select description="Current Status" options={activeBoard.columns} />
+      <Select
+        description="Current Status"
+        options={activeBoard.columns}
+        status={task.status}
+        handleClick={changeStatus}
+      />
     </div>
   );
 };

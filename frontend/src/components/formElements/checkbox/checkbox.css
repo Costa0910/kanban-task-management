@@ -8,10 +8,11 @@
 }
 
 .input__checkbox .checkbox {
+  -webkit-appearance: none;
   appearance: none;
   position: relative;
-  width: 22px;
-  height: 22px;
+  min-width: 18px;
+  height: 18px;
   margin: 0;
   border-radius: 4px;
   background-color: #fff;
@@ -27,12 +28,12 @@
   content: "";
   position: absolute;
   display: none;
-  left: 6px;
-  top: 3px;
+  left: 5px;
+  top: 2px;
   display: block;
   position: absolute;
-  width: 5px;
-  height: 10px;
+  width: 3px;
+  height: 8px;
   border-right: 3px solid #fff;
   border-bottom: 3px solid #fff;
   transform: rotate(35deg);

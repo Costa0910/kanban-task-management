@@ -130,7 +130,57 @@ export default (state, action) => {
             : board
         ),
       };
+    case "UPDATE_TASK_STATUS":
+      helper = state.activeBoard.tasks.map((task) =>
+        task.id === action.payload.id
+          ? { ...task, status: action.payload.status }
+          : task
+      );
 
+      return {
+        ...state,
+        activeBoard: {
+          ...state.activeBoard,
+          tasks: helper,
+        },
+        boards: state.boards.map((board) =>
+          board.id === state.activeBoard.id
+            ? {
+                ...board,
+                tasks: helper,
+              }
+            : board
+        ),
+      };
+    case "UPDATE_SUBTASK":
+      helper = state.activeBoard.tasks.map((task) =>
+        task.id === action.payload.taskId
+          ? {
+              ...task,
+              subtasks: task.subtasks.map((subtask) =>
+                subtask.id === action.payload.subtaskId
+                  ? { ...subtask, isCompleted: !subtask.isCompleted }
+                  : subtask
+              ),
+            }
+          : task
+      );
+
+      return {
+        ...state,
+        activeBoard: {
+          ...state.activeBoard,
+          tasks: helper,
+        },
+        boards: state.boards.map((board) =>
+          board.id === state.activeBoard.id
+            ? {
+                ...board,
+                tasks: helper,
+              }
+            : board
+        ),
+      };
     default:
       return state;
   }

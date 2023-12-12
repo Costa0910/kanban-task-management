@@ -9,7 +9,7 @@ const Select = ({ description, options, status, handleClick }) => {
       <select
         id="status"
         name="currentStatus"
-        onChange={handleClick}
+        onChange={(e) => handleClick(e.target.value)}
         defaultValue={status}
       >
         {options.map((option) => (
