@@ -2,9 +2,9 @@ import Input from "../../formElements/input/Input";
 import InputAndDelete from "../../formElements/inputAndDelete/InputAndDelete";
 import Button from "../../formElements/button/Button";
 import PropTypes from "prop-types";
-// import { useAppDispatch } from "../../../context/AppContext";
 import { useReducer } from "react";
 import { nanoid } from "nanoid";
+import { generateColor } from "../../../utils/generateColor";
 
 import "./addNewBoard.css";
 
@@ -14,17 +14,17 @@ const defaultState = {
     {
       title: "Todo",
       id: nanoid(),
-      color: "#ebecf0",
+      color: generateColor(),
     },
     {
       title: "Doing",
       id: nanoid(),
-      color: "#ebecf0",
+      color: generateColor(),
     },
     {
       title: "Done",
       id: nanoid(),
-      color: "#ebecf0",
+      color: generateColor(),
     },
   ],
 };
@@ -67,7 +67,7 @@ const reducer = (state, action) => {
           {
             title: "",
             id: nanoid(),
-            color: "#ebecf0",
+            color: generateColor(),
           },
         ],
       };
@@ -83,28 +83,6 @@ const AddNewBoard = ({
   buttonText,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const addNewBoard = useAppDispatch();
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // const newBoard = {
-  //   //   id: nanoid(),
-  //   //   name: state.name,
-  //   //   columns: state.columns.map((column) => ({
-  //   //     ...state.columns,
-  //   //     color: "#ebecf0",
-  //   //   })),
-  //   //   tasks: [],
-  //   // };
-
-  //   addNewBoard({
-  //     type: "ADD_BOARD",
-  //     payload: state,
-  //   });
-
-  //   // close the modal
-  //   handleClose();
-  // };
 
   return (
     <form

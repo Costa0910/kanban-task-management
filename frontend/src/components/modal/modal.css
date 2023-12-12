@@ -61,6 +61,7 @@
 }
 
 .settings-modal .modal-content {
+  border: 1px solid red;
   margin-left: 84vw;
   margin-top: 4.5rem;
   display: flex;
@@ -77,17 +78,20 @@
 .modal.task-settings-modal {
   bottom: 8rem;
   justify-content: flex-end;
-  margin-left: 32vw;
 }
 
 .task-settings-modal .modal-content {
+  position: absolute;
+  right: 10vw;
+  top: 42vh;
   min-width: 200px;
   width: 200px;
   gap: 0.8rem;
 }
 
 @media screen and (min-width: 976px) {
-  .modal.task-settings-modal {
-    margin-left: 26vw;
+  .task-settings-modal .modal-content {
+    right: 32vw;
+    top: 42vh;
   }
 }

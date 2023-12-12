@@ -7,12 +7,15 @@ import { useState } from "react";
 import "./menu.css";
 import { useAppContext, useAppDispatch } from "../../context/AppContext";
 
-const Item = ({ name, customClass, id }) => {
+const Item = ({ name, customClass, id, closeModal }) => {
   const dispatchBoard = useAppDispatch();
 
   const handleClick = (e) => {
     e.stopPropagation();
     dispatchBoard({ type: "UPDATE_ACTIVE_BOARD", payload: { id } });
+    if (closeModal) {
+      closeModal();
+    }
   };
   return (
     <div
@@ -32,6 +35,7 @@ Item.propTypes = {
   name: PropTypes.string.isRequired,
   customClass: PropTypes.string,
   id: PropTypes.string.isRequired,
+  closeModal: PropTypes.func,
 };
 
 const Menu = ({ handleClose }) => {
@@ -61,6 +65,7 @@ const Menu = ({ handleClose }) => {
             key={item.id}
             name={item.name}
             customClass={item.id === activeBoard.id ? "active" : ""}
+            closeModal={handleClose}
           />
         ))}
         <div className="menu__item-add">

@@ -1,17 +1,10 @@
 import { nanoid } from "nanoid";
-import { saveState } from "../localStorage";
+import { saveState } from "../utils/localStorage";
 
 export default (state, action) => {
   let helper;
 
   switch (action.type) {
-    case "SET_BOARD":
-      helper = {
-        ...state,
-        activeBoard: action.payload,
-      };
-      saveState(helper);
-      return helper;
     case "UPDATE_ACTIVE_BOARD":
       helper = {
         ...state,
@@ -25,10 +18,7 @@ export default (state, action) => {
       helper = {
         id: nanoid(),
         name: action.payload.name,
-        columns: action.payload.columns.map((column) => ({
-          ...column,
-          color: "#ebecf0",
-        })),
+        columns: action.payload.columns,
         tasks: [],
       };
       helper = {

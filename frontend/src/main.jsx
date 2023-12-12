@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import AppProvider from "../src/context/AppContext.jsx";
 import reducer from "../src/context/reducer.js";
 import defaultState from "../src/context/initialState.js";
-import { getState } from "./localStorage.js";
+import { getState } from "./utils/localStorage.js";
 import "./index.css";
 import App from "./App.jsx";
 

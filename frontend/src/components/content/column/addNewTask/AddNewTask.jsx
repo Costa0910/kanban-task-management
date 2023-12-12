@@ -84,16 +84,6 @@ const AddNewTask = ({
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   addTask({
-  //     type: "ADD_TASK",
-  //     payload: state,
-  //   });
-
-  //   handleClose(); // close modal
-  // };
-
   return (
     <form
       className="add-new-task"
