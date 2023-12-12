@@ -2,21 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import AppProvider from "../src/context/AppContext.jsx";
 import reducer from "../src/context/reducer.js";
-import initialState from "../src/context/initialState.js";
+import defaultState from "../src/context/initialState.js";
+import { getState } from "./localStorage.js";
 import "./index.css";
-// import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 
-// import Root from "./routes/Root.jsx";
-// import ErrorPage from "./routes/ErrorPage.jsx";
+const savedState = getState();
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Root />,
-//     errorElement: <ErrorPage />,
-//   },
-// ]);
+// use local storage to initialize state if exist
+const initialState = savedState || defaultState;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

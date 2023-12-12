@@ -1,21 +1,26 @@
 import { nanoid } from "nanoid";
+import { saveState } from "../localStorage";
 
 export default (state, action) => {
   let helper;
 
   switch (action.type) {
     case "SET_BOARD":
-      return {
+      helper = {
         ...state,
         activeBoard: action.payload,
       };
+      saveState(helper);
+      return helper;
     case "UPDATE_ACTIVE_BOARD":
-      return {
+      helper = {
         ...state,
         activeBoard: state.boards.find(
           (board) => board.id === action.payload.id
         ),
       };
+      saveState(helper);
+      return helper;
     case "ADD_BOARD":
       helper = {
         id: nanoid(),
@@ -26,17 +31,19 @@ export default (state, action) => {
         })),
         tasks: [],
       };
-      return {
+      helper = {
         ...state,
         boards: [...state.boards, helper],
         activeBoard: helper,
       };
+      saveState(helper);
+      return helper;
     case "ADD_TASK":
       helper = {
         id: nanoid(),
         ...action.payload,
       };
-      return {
+      helper = {
         ...state,
         activeBoard: {
           ...state.activeBoard,
@@ -49,8 +56,11 @@ export default (state, action) => {
         ),
       };
 
+      saveState(helper);
+      return helper;
+
     case "EDIT_BOARD":
-      return {
+      helper = {
         ...state,
         activeBoard: {
           ...state.activeBoard,
@@ -67,6 +77,9 @@ export default (state, action) => {
             : board
         ),
       };
+
+      saveState(helper);
+      return helper;
     case "UPDATE_TASK":
       helper = {
         ...state.activeBoard.tasks.find(
@@ -75,7 +88,7 @@ export default (state, action) => {
         ...action.payload,
       };
 
-      return {
+      helper = {
         ...state,
         activeBoard: {
           ...state.activeBoard,
@@ -94,11 +107,14 @@ export default (state, action) => {
             : board
         ),
       };
+
+      saveState(helper);
+      return helper;
     case "DELETE_BOARD":
       helper = state.boards.findIndex(
         (board) => board.id === state.activeBoard.id
       );
-      return {
+      helper = {
         ...state,
         boards: state.boards.filter(
           (board) => board.id !== state.activeBoard.id
@@ -111,11 +127,13 @@ export default (state, action) => {
           },
       };
 
+      saveState(helper);
+      return helper;
     case "DELETE_TASK":
       helper = state.activeBoard.tasks.filter(
         (task) => task.id !== action.payload
       );
-      return {
+      helper = {
         ...state,
         activeBoard: {
           ...state.activeBoard,
@@ -130,6 +148,9 @@ export default (state, action) => {
             : board
         ),
       };
+
+      saveState(helper);
+      return helper;
     case "UPDATE_TASK_STATUS":
       helper = state.activeBoard.tasks.map((task) =>
         task.id === action.payload.id
@@ -137,7 +158,7 @@ export default (state, action) => {
           : task
       );
 
-      return {
+      helper = {
         ...state,
         activeBoard: {
           ...state.activeBoard,
@@ -152,6 +173,9 @@ export default (state, action) => {
             : board
         ),
       };
+
+      saveState(helper);
+      return helper;
     case "UPDATE_SUBTASK":
       helper = state.activeBoard.tasks.map((task) =>
         task.id === action.payload.taskId
@@ -166,7 +190,7 @@ export default (state, action) => {
           : task
       );
 
-      return {
+      helper = {
         ...state,
         activeBoard: {
           ...state.activeBoard,
@@ -181,6 +205,9 @@ export default (state, action) => {
             : board
         ),
       };
+
+      saveState(helper);
+      return helper;
     default:
       return state;
   }
