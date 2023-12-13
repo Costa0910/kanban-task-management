@@ -1,10 +1,6 @@
-## Full Stack App:
+# Frontend Mentor - Kanban task management web app solution
 
-I made an attempt to create a full stack application, but unfortunately, I was unable to establish a connection between the front end and backend. However, I am currently learning about authentication and how to connect a full stack application. For the backend, I utilized Express js and for the database, I implemented Sequelize with either SQLite or PostgreSql.
-
-## Diagram
-
-![](./frontend/public/Screenshot%202023-11-27%20at%2010.45.41.png)
+This is a solution to the [Kanban task management web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/kanban-task-management-web-app-wgQLt-HlbB).
 
 ## Table of contents
 
@@ -37,11 +33,11 @@ Users should be able to:
 
 ### Light Mode
 
-![](./frontend/public/Screen%20Shot%202023-12-12%20at%2009.21.24.png)
+![](../frontend/public/Screen%20Shot%202023-12-12%20at%2009.21.24.png)
 
 ### Dark Mode
 
-![](./frontend/public/Screen%20Shot%202023-12-12%20at%2015.31.29.png)
+![](../frontend/public/Screen%20Shot%202023-12-12%20at%2015.31.29.png)
 
 ### Links
 
