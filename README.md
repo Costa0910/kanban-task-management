@@ -1,10 +1,4 @@
-## Full Stack App:
 
-I made an attempt to create a full stack application, but unfortunately, I was unable to establish a connection between the front end and backend. However, I am currently learning about authentication and how to connect a full stack application. For the backend, I utilized Express js and for the database, I implemented Sequelize with either SQLite or PostgreSql.
-
-## Diagram
-
-![](./frontend/public/Screenshot%202023-11-27%20at%2010.45.41.png)
 
 ## Table of contents
 
@@ -46,7 +40,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [source](https://github.com/Costa0910/kanban-task-management)
-- Live Site URL: [demo](https://costa0910-kaban-task-management.netlify.app)
+- Live Site URL: [demo](https://kanban.costa0910.dev)
 
 ## My process
 
@@ -60,6 +54,6 @@ Users should be able to:
 
 ## Author
 
-- Website - [Armando Costa](https://www.your-site.com)
+- Website - [Armando Costa](https://costa0910.dev)
 - Frontend Mentor - [@Costa0910](https://www.frontendmentor.io/profile/Costa0910)
 - Linkedin - [Armando Costa](https://www.linkedin.com/in/armando-costa12/)
